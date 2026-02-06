@@ -20,19 +20,19 @@ const item = [
     id: 1,
     icon: <User />,
     name: "Profile",
-    ref: "/chat",
+    ref: "/profile",
   },
   {
     id: 2,
     icon: <Settings />,
     name: "setting",
-    ref: "/chat",
+    ref: "/setting",
   },
   {
     id: 3,
     icon: <Bookmark />,
     name: "Saved Message",
-    ref: "/chat",
+    ref: "/saved",
   },
   {
     id: 4,
@@ -44,13 +44,13 @@ const item = [
     id: 5,
     icon: <Group />,
     name: "group",
-    ref: "/chat",
+    ref: "/group",
   },
   {
     id: 6,
     icon: <Megaphone />,
     name: "Channle",
-    ref: "/chat",
+    ref: "/channle",
   },
 ];
 
@@ -69,9 +69,10 @@ export default function Sidebar() {
         )}
       >
         {item.map((item) => (
-          <div
+          <Link
             onClick={() => setSelect(item.id)}
             key={item.id}
+            href={item.ref}
             className={cn(
               "flex flex-col px-4 py-3 transition-colors duration-500 rounded-2xl",
               select === item.id ? "bg-blue-700 text-white  " : "",
@@ -79,9 +80,9 @@ export default function Sidebar() {
           >
             <div className="flex gap-4">
               {item.icon}
-            <Link href={item.ref}>{item.name}</Link>
+              {item.name}
             </div>
-          </div>
+          </Link>
         ))}
       </motion.div>
     </div>
