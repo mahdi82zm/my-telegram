@@ -6,7 +6,7 @@ import { Input } from "../ui/input";
 import { cn } from "@/lib/utils";
 import { useChatStore } from "@/store/chatStore";
 import toast from "react-hot-toast";
-import { LucideLoader2, Send, Upload } from "lucide-react";
+import { LucideLoader2, Send, Upload, UploadCloud } from "lucide-react";
 
 export default function InputBar() {
   const { addMessage } = useChatStore();
@@ -57,8 +57,10 @@ export default function InputBar() {
           disabled={loading}
           className={cn("flex-1 focus-visible:ring-blue-500")}
         ></Input>{" "}
-        <Input type="file"></Input>
-        <Button onClick={handleUpload} className={cn("bg-blue-600")}></Button>
+        <Button className={cn("bg-blue-600 p-0  relative")}>
+          <Input type="file" placeholder="none" className={cn("size-1 border-none")}></Input>
+          <Upload className="absolute" />
+        </Button>
         <Button
           type="submit"
           disabled={loading}
