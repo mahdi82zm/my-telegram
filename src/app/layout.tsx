@@ -4,6 +4,8 @@ import "./globals.css";
 import Sidebar from "@/components/sidebar/Sidebar";
 import { cn } from "@/lib/utils";
 
+import { Providers } from "./provider";
+
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
@@ -35,7 +37,9 @@ export default function RootLayout({
           <div className="col-span-3">
             <Sidebar />
           </div>
-          <div className="col-span-9">{children}</div>
+          <Providers>
+            <div className="col-span-9">{children}</div>
+          </Providers>
         </div>
       </body>
     </html>
