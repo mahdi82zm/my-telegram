@@ -9,6 +9,10 @@ import { LayoutPanelLeft } from "lucide-react";
 import Sidebar from "@/components/sidebar/Sidebar";
 
 export default function ChatIndex() {
+
+  
+
+
   return (
     <div className="grid grid-cols-12 gap-4 justify-between">
       <Toaster position="bottom-right" />
