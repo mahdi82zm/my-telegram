@@ -27,7 +27,13 @@ export default function InputBar() {
     const responseText = `پاسخ شبیه‌سازی شده برای: "${inputText}" — (اینجا اتصال Socket.io انجام می‌شود)`;
     addMessage(responseText, "other");
     setIsLoading(false);
-    toast.success("پیام ارسال شد ");
+    toast.success("پیام ارسال شد ", {
+      style: {
+        color: "green",
+
+        borderLeft: "red 3px",
+      },
+    });
   };
 
   useEffect(() => {
@@ -58,7 +64,11 @@ export default function InputBar() {
           className={cn("flex-1 focus-visible:ring-blue-500")}
         ></Input>{" "}
         <Button className={cn("bg-blue-600 p-0  relative")}>
-          <Input type="file" placeholder="none" className={cn("size-1 border-none")}></Input>
+          <Input
+            type="file"
+            placeholder="none"
+            className={cn("size-1 border-none")}
+          ></Input>
           <Upload className="absolute" />
         </Button>
         <Button

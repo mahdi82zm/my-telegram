@@ -7,12 +7,9 @@ import InputBar from "@/components/chat/InputBar";
 import { cn } from "@/lib/utils";
 import { LayoutPanelLeft } from "lucide-react";
 import Sidebar from "@/components/sidebar/Sidebar";
+import Contact from "../contact/Contact";
 
 export default function ChatIndex() {
-
-  
-
-
   return (
     <div className="grid grid-cols-12 gap-4 justify-between">
       <Toaster position="bottom-right" />
@@ -38,20 +35,7 @@ export default function ChatIndex() {
 
       {/* Contact */}
 
-      <motion.div
-        initial={{ scale: 0.9, y: 20 }}
-        animate={{ scale: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
-        className="bg-white shadow-2xl rounded-xl m-4 flex flex-col w-full col-span-4 border"
-      >
-        <div className=" ">
-          <div className="border-b bg-blue-50">
-            <h3 className="text-lg font-semibold text-blue-700 p-4">
-              Contact{" "}
-            </h3>
-          </div>
-        </div>
-      </motion.div>
+      <Contact />
     </div>
   );
 }
