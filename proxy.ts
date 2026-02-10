@@ -19,16 +19,35 @@ export async function proxy(request: NextRequest) {
   });
 
   const {
+    data: { session },
+  } = await supabase.auth.getSession();
+
+  if (!session) {
+    const protectedRoute = ["/chat", " /profile"];
+
+    const path = request.nextUrl.pathname;
+
+    const shoudRedirect = protectedRoute.some(
+      (route) =>
+        path.startsWith(route) &&
+        !path.startsWith("/login") &&
+        !path.startsWith("/register")
+    );
+
+    if (shoudRedirect) {
+      const redirectUrl = new URL("/login", request.url);
+    }
+  }
+
+  const {
     data: { user },
   } = await supabase.auth.getUser();
-
-  const protectedRoute = ["/chat", " /profile"];
 
   const isprotected = protectedRoute.some((path) => {
     request.nextUrl.pathname.startsWith(path.trim());
   });
 
-  if (!user && isprotected) {
+  if ((!user && isprotected) || !session) {
     const redirect = new URL("/login", request.url);
     return NextResponse.redirect(redirect);
   }
