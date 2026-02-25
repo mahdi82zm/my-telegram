@@ -9,10 +9,18 @@ import { useRouter } from "next/navigation";
 export default function LoginIndex() {
   const router = useRouter();
 
-  const { error, isPending, mutate } = useMutation({
+  const { error, isPending, mutate } = useMutation<
+    unknown,
+    Error,
+    { email: string; password: string }
+  >({
     mutationFn: async ({ email, password }) => {
-      const {} = await supabase.auth.signInWithPassword({ email, password });
+      const { data, error } = await supabase.auth.signInWithPassword({
+        email,
+        password,
+      });
       if (error) throw error;
+      return data;
     },
     onSuccess: () => {
       console.log("با موفقیت وارد شدید .");
@@ -22,6 +30,9 @@ export default function LoginIndex() {
         },
       });
       router.push("/");
+    },
+    onError: (error: Error) => {
+      toast.error(`خطا در  وود  ${error.message || "خطای ناشناخته "} `);
     },
   });
 

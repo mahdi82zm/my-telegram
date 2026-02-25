@@ -17,18 +17,18 @@ interface ChatState {
 
 export const useChatStore = create<ChatState>((set, get) => ({
   messages: [
-    {
-      id: "1",
-      text: "سلام! من دستیار شما هستم.",
-      sender: "other",
-      timeStamp: Date.now() - 10000,
-    },
-    {
-      id: "2",
-      text: "چطور می‌توانم کمکت کنم؟",
-      sender: "other",
-      timeStamp: Date.now() - 5000,
-    },
+    // {
+    //   id: "1",
+    //   text: "سلام! من دستیار شما هستم.",
+    //   sender: "other",
+    //   timeStamp: Date.now() - 10000,
+    // },
+    // {
+    //   id: "2",
+    //   text: "چطور می‌توانم کمکت کنم؟",
+    //   sender: "other",
+    //   timeStamp: Date.now() - 5000,
+    // },
   ],
 
   addMessage: (text, sender) =>

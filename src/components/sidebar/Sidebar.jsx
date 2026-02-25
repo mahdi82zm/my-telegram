@@ -74,8 +74,8 @@ export default function Sidebar() {
             key={item.id}
             href={item.ref}
             className={cn(
-              "flex flex-col px-4 py-3 transition-colors duration-500 rounded-2xl",
-              select === item.id ? "bg-blue-700 text-white  " : "",
+              "flex flex-col px-4 py-3 transition-colors duration-500 rounded-2xl border hover:border-blue-700",
+              select === item.id ? "bg-blue-700/30 text-black  " : "",
             )}
           >
             <div className="flex gap-4">

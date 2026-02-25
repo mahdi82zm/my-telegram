@@ -1,55 +1,122 @@
 "use client";
 
-import { supabase } from "@/lib/supabase/client";
-import { supabaseServer } from "@/lib/supabase/server";
+import { createClient } from "@/lib/supabase/client";
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { motion } from "framer-motion";
-import { Suspense, useId } from "react";
+import { Suspense, useEffect, useId, useState } from "react";
 import toast from "react-hot-toast";
 
-const fetchCaonatact = async () => {
-  const {
-    data: { user },
-    error,
-  } = await supabase.auth.getUser();
+import FetchContact from "./fetchContact";
+import { LucideLoader2 } from "lucide-react";
+import { cn } from "@/lib/utils";
+import Image from "next/image";
+import { useChatStore } from "@/store/chatStore";
+import { ChatWindow } from "../chat/ChatWindow";
 
-  const userId = user?.id;
+import { sendMssageTosupabase } from "../../services/messageService";
 
-  if (!useId) {
-    toast("کاربری با این id وجود ندارد ");
-  }
+export async function DispMessage() {
+  const supabase = createClient();
 
-  if (error) {
-    toast("خطا در دریافت اطلاهات : " + error.message);
-    return null;
-  }
+  const { data: messages, error } = await supabase
+    .from("messages")
+    .select("content");
 
-  const { data: Profile } = await supabaseServer.from("Profile").select();
-
-  console.log(Profile);
-  return Profile;
-};
+  const content = messages?.map((item) => item.content).join(" ");
+  console.log("message is:  ", content);
+  return content;
+}
 
 export default function Contact() {
+  const [idUser, setIdUser] = useState(0);
+
+  const [newMes, setNewMes] = useState("");
   const { data, isLoading, error } = useQuery({
     queryKey: ["contact"],
-    queryFn: fetchCaonatact,
+    queryFn: FetchContact,
   });
 
-  console.log(data);
+  console.log("data", data);
+  if (error) {
+    toast.error(error.message);
+  }
+  // const { props } = data;
+  // console.log("prop", props);
+
+  const { addMessage } = useChatStore();
+
+  const {
+    data: messageData ,
+    isLoading: pending,
+    error: erroMsgs,
+  } = useQuery({
+    queryKey: ["message"],
+    queryFn: DispMessage,
+  });
+
+  console.log("messageData", messageData);
+
+  // useEffect(() => {
+  //   const fetchMessage = async () => {
+  //
+
+  //     // const { id, message } = messages();
+
+  //     // if (id === idUser) {
+  //     //   setNewMes(message);
+  //     // }
+  //     console.log('the message  is  : ',messages);
+  //   };
+  //   fetchMessage();
+  // }, [idUser]);
+
+  const handleOpen = (id) => {
+    setIdUser(id);
+
+    addMessage(messageData, "other");
+    console.log(idUser);
+    // if(id === )
+  };
 
   return (
     <motion.div
       initial={{ scale: 0.9, y: 20 }}
       animate={{ scale: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="bg-white shadow-2xl rounded-xl m-4 flex flex-col w-full col-span-4 border"
+      className="bg-white shadow-2xl rounded-xl m-4 flex flex-col w-full col-span-4 border relative"
     >
-      <div className=" ">
+      <div className="relative h-full w-full">
         <div className="border-b bg-blue-50">
           <h3 className="text-lg font-semibold text-blue-700 p-4">Contact </h3>
-          <Suspense>{data}</Suspense>
         </div>
+        {isLoading && (
+          <div className="flex w-full h-full items-center justify-center">
+            <LucideLoader2
+              className={cn(
+                "animate-spin  fixed z-50 translate-x-1/2 items-center justify-center",
+              )}
+            />
+          </div>
+        )}
+        {data?.map((item) => (
+          <div
+            key={item.id}
+            className="flex items-center  px-4 py-2 gap-5 border m-3 rounded-2xl hover:bg-accent cursor-pointer"
+          >
+            <button onClick={() => handleOpen(item.id)}>
+              <Image
+                src={String(item.avatar_url)}
+                width={100}
+                height={100}
+                alt={String(item.username)}
+                className="rounded-full size-14"
+              />
+
+              <h3>{item.username}</h3>
+              <span>{item.created_at}</span>
+            </button>
+          </div>
+        ))}
       </div>
     </motion.div>
   );

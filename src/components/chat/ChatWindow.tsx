@@ -4,12 +4,12 @@ import { useChatStore, ChatMessage } from "@/store/chatStore";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { createClient } from "@/lib/supabase/client";
+import toast from "react-hot-toast";
 
 const MessageBuble: React.FC<{ message: ChatMessage }> = ({ message }) => {
   const isUser = message.sender === "user";
   return (
-
-    
     <motion.div
       layout
       initial={{ opacity: 0, scale: 0.8 }}
@@ -46,8 +46,19 @@ const MessageBuble: React.FC<{ message: ChatMessage }> = ({ message }) => {
   );
 };
 
+export async function DispMessage() {
+  const supabase = createClient();
+
+  const { data: messages, error } = await supabase
+    .from("messages")
+    .select("sender_id, content");
+
+  console.log(messages);
+  return messages;
+}
+
 export const ChatWindow: React.FC = () => {
-  const { messages } = useChatStore();
+  const { messages, addMessage } = useChatStore();
 
   return (
     <ScrollArea

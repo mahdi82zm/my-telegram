@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from "next/server";
-
 import { createServerClient } from "@supabase/ssr";
+import { Database } from "./database.types";
+import toast from "react-hot-toast";
+import { supabaseServer } from "@/lib/supabase/server";
 
 const UrlSupa = process.env.NEXT_PUBLIC_SUPABASE_URL!;
 
@@ -9,7 +11,9 @@ const AnonSupa = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!;
 export async function proxy(request: NextRequest) {
   const res = NextResponse.next();
 
-  const supabase = createServerClient(UrlSupa, AnonSupa, {
+
+  supabaseServer
+  const supabase = createServerClient<Database>(UrlSupa, AnonSupa, {
     cookies: {
       get: (key) => request.cookies.get(key)?.value,
 
@@ -21,21 +25,21 @@ export async function proxy(request: NextRequest) {
   const {
     data: { session },
   } = await supabase.auth.getSession();
-
+  const protectedRoute = ["/chat", "/profile"];
   if (!session) {
-    const protectedRoute = ["/chat", " /profile"];
-
     const path = request.nextUrl.pathname;
-
+    toast.error("you not have  session!");
     const shoudRedirect = protectedRoute.some(
       (route) =>
         path.startsWith(route) &&
         !path.startsWith("/login") &&
-        !path.startsWith("/register")
+        !path.startsWith("/register"),
     );
 
     if (shoudRedirect) {
       const redirectUrl = new URL("/login", request.url);
+
+      return NextResponse.redirect(redirectUrl);
     }
   }
 

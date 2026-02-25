@@ -7,6 +7,7 @@ import { cn } from "@/lib/utils";
 import { useChatStore } from "@/store/chatStore";
 import toast from "react-hot-toast";
 import { LucideLoader2, Send, Upload, UploadCloud } from "lucide-react";
+import { supabase } from "@/lib/supabase/client";
 
 export default function InputBar() {
   const { addMessage } = useChatStore();
@@ -17,6 +18,8 @@ export default function InputBar() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!inputText.trim()) return;
+
+   
 
     addMessage(inputText, "user");
     setInputText("");

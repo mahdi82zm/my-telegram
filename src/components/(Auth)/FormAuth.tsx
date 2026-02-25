@@ -8,18 +8,18 @@ import { Loader, SplinePointer } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface PropAuth {
-  onSubmit: (email: string, password: string) => void;
-  error: Error | null;
+  onSubmit: (data: { email: string; password: string }) => void;
+  error?: any;
   loading: boolean;
   type: "login" | "register" | "forget";
 }
 
 export default function FormAuth({ onSubmit, error, loading, type }: PropAuth) {
-  const [password, setPassword] = useState("");
+  const [password, setPassword] = useState<string>("");
   const [email, setEmail] = useState<string>("");
 
-  if (error || !password || !email) {
-    toast("خطا  در ورود به سایت " + error, {
+  if (error) {
+    toast.error("خطا  در ورود به سایت " + error, {
       style: {
         color: "red",
       },
@@ -51,13 +51,13 @@ export default function FormAuth({ onSubmit, error, loading, type }: PropAuth) {
         type="email"
         onChange={(e) => setEmail(e.target.value)}
       />
-      {(type === "forget" || type === "register") && (
-        <Input
-          type="password"
-          placeholder="رمز  خودرا وارد کنید..."
-          onChange={(e) => setPassword(e.target.value)}
-        />
-      )}
+
+      <Input
+        type="password"
+        placeholder="رمز  خودرا وارد کنید..."
+        onChange={(e) => setPassword(e.target.value)}
+      />
+
       {!email && !password ? (
         ""
       ) : (
