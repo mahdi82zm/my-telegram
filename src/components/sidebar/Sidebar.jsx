@@ -65,7 +65,7 @@ export default function Sidebar() {
         animate={{ scale: 1, y: 0 }}
         transition={{ duration: 0.4 }}
         className={cn(
-          "flex  flex-col   gap-4 text-zinc-700 text-مل font-semibold bg-white shadow-2xl border  h-full rounded-2xl p-4 ",
+          "flex  flex-col   gap-4 text-zinc-700 text-مل font-semibold bg-accent shadow-2xl border  h-full rounded-2xl p-4 ",
         )}
       >
         {item.map((item) => (
@@ -75,7 +75,7 @@ export default function Sidebar() {
             href={item.ref}
             className={cn(
               "flex flex-col px-4 py-3 transition-colors duration-500 rounded-2xl border hover:border-blue-700",
-              select === item.id ? "bg-blue-700/30 text-black  " : "",
+              select === item.id ? "bg-blue-700/30 text-primary  " : "",
             )}
           >
             <div className="flex gap-4">

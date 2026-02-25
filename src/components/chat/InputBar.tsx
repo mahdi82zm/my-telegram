@@ -56,7 +56,7 @@ export default function InputBar() {
   };
 
   return (
-    <div className="p-4 border-t bg-white shadow-lg">
+    <div className="p-4 border-t bg-accent shadow-lg">
       <form onSubmit={handleSubmit} className="flex items-center space-x-2">
         <Input
           ref={inputEl}

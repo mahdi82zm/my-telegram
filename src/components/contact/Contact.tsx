@@ -46,7 +46,7 @@ export default function Contact() {
   const { addMessage } = useChatStore();
 
   const {
-    data: messageData ,
+    data: messageData,
     isLoading: pending,
     error: erroMsgs,
   } = useQuery({
@@ -83,10 +83,10 @@ export default function Contact() {
       initial={{ scale: 0.9, y: 20 }}
       animate={{ scale: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="bg-white shadow-2xl rounded-xl m-4 flex flex-col w-full col-span-4 border relative"
+      className="bg-accent shadow-2xl rounded-xl m-4 flex flex-col w-full col-span-4 border relative"
     >
       <div className="relative h-full w-full">
-        <div className="border-b bg-blue-50">
+        <div className="border-b bg-sidebar-accent rounded-2xl">
           <h3 className="text-lg font-semibold text-blue-700 p-4">Contact </h3>
         </div>
         {isLoading && (
@@ -101,20 +101,19 @@ export default function Contact() {
         {data?.map((item) => (
           <div
             key={item.id}
+            onClick={() => handleOpen(item.id)}
             className="flex items-center  px-4 py-2 gap-5 border m-3 rounded-2xl hover:bg-accent cursor-pointer"
           >
-            <button onClick={() => handleOpen(item.id)}>
-              <Image
-                src={String(item.avatar_url)}
-                width={100}
-                height={100}
-                alt={String(item.username)}
-                className="rounded-full size-14"
-              />
+            <Image
+              src={String(item.avatar_url)}
+              width={100}
+              height={100}
+              alt={String(item.username)}
+              className="rounded-full size-14"
+            />
 
-              <h3>{item.username}</h3>
-              <span>{item.created_at}</span>
-            </button>
+            <h3 className="">{item.username}</h3>
+            <span>{}</span>
           </div>
         ))}
       </div>
