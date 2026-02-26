@@ -19,11 +19,11 @@ export default function ChatIndex() {
         animate={{ scale: 1, y: 0 }}
         transition={{ duration: 0.4 }}
         className={cn(
-          " col-span-7 flex flex-col w-full max-w-3xl h-[90vh] bg-white shadow-2xl rounded-xl overflow-hidden border m-4",
+          " col-span-7 flex flex-col w-full max-w-3xl h-[90vh] bg-accent shadow-2xl rounded-xl overflow-hidden border m-4",
         )}
       >
         {/* Header */}
-        <header className="p-4 border-b flex items-center space-x-2 bg-blue-50 text-blue-800  ">
+        <header className="p-4 border-b flex items-center space-x-2 bg-primary-foreground  text-blue-800  ">
           <LayoutPanelLeft className="size-6" />
           <h1 className="text-lg font-semibold">Chat Ui </h1>
         </header>

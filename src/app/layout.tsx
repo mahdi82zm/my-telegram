@@ -5,6 +5,7 @@ import Sidebar from "@/components/sidebar/Sidebar";
 import { cn } from "@/lib/utils";
 
 import { Providers } from "./provider";
+import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -29,8 +30,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased dark`}
       >
+        <Toaster position="top-center"  />
         {children}
       </body>
     </html>

@@ -2,6 +2,7 @@ import Sidebar from "@/components/sidebar/Sidebar";
 import { cn } from "@/lib/utils";
 import { Providers } from "../provider";
 import { Toaster } from "react-hot-toast";
+import Header from "@/components/ui/Header";
 
 export default function RootLayout({
   children,
@@ -19,7 +20,10 @@ export default function RootLayout({
           </div>
           <Providers>
             <Toaster position="top-center" />
-            <div className="col-span-9">{children}</div>
+            <div className="col-span-9 flex-col pt-4 ">
+              <Header  />
+              <div>{children}</div>
+            </div>
           </Providers>
         </div>
       </body>

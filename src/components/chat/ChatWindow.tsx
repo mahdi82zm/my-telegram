@@ -62,7 +62,7 @@ export const ChatWindow: React.FC = () => {
 
   return (
     <ScrollArea
-      className={cn("flex-1 p-4 h-[calc(90vh-160px)] border-b bg-white/50")}
+      className={cn("flex-1 p-4 h-[calc(90vh-160px)] border-b bg-accent")}
     >
       {messages.map((msg) => (
         <MessageBuble key={msg.id} message={msg} />

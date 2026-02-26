@@ -2,12 +2,14 @@
 
 import FormAuth from "../FormAuth";
 import { useMutation } from "@tanstack/react-query";
-import { supabase } from "@/lib/supabase/client";
+import { createClient } from "@/lib/supabase/client";
 import toast from "react-hot-toast";
 import { useRouter } from "next/navigation";
 
 export default function LoginIndex() {
   const router = useRouter();
+
+  const supabase = createClient();
 
   const { error, isPending, mutate } = useMutation<
     unknown,
