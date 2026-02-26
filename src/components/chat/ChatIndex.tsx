@@ -20,6 +20,7 @@ export default function ChatIndex() {
         transition={{ duration: 0.4 }}
         className={cn(
           " col-span-7 flex flex-col w-full max-w-3xl h-[90vh] bg-accent shadow-2xl rounded-xl overflow-hidden border m-4",
+          " col-span-7 flex flex-col w-full max-w-3xl h-[90vh] bg-accent shadow-2xl rounded-xl overflow-hidden border m-4",
         )}
       >
         {/* Header */}

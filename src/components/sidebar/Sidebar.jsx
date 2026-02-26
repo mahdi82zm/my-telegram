@@ -66,6 +66,7 @@ export default function Sidebar() {
         transition={{ duration: 0.4 }}
         className={cn(
           "flex  flex-col   gap-4 text-zinc-700 text-مل font-semibold bg-accent shadow-2xl border  h-full rounded-2xl p-4 ",
+          "flex  flex-col   gap-4 text-zinc-700 text-مل font-semibold bg-accent shadow-2xl border  h-full rounded-2xl p-4 ",
         )}
       >
         {item.map((item) => (
