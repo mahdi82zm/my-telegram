@@ -13,16 +13,16 @@ export default function RootLayout({
     <html>
       <body>
         <div
-          className={cn("grid grid-cols-12 justify-between w-full h-full m-0")}
+          className={cn("grid grid-cols-12  w-full h-full m-0")}
         >
-          <div className="col-span-3">
+          <div className="col-span-2  grid-cols-1">
             <Sidebar />
           </div>
           <Providers>
             <Toaster position="top-center" />
-            <div className="col-span-9 flex-col pt-4 ">
+            <div className="col-span-10 flex-col pt-4  ">
               <Header  />
-              <div>{children}</div>
+              <div >{children}</div>
             </div>
           </Providers>
         </div>

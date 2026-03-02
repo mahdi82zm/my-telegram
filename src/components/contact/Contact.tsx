@@ -36,7 +36,19 @@ export default function Contact() {
     queryFn: FetchContact,
   });
 
-  console.log("data", data);
+  const time = data?.[0].created_at;
+
+  const dateTime = new Date(time);
+
+  const format = dateTime.toLocaleString("fa-IR", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+    hour: "2-digit",
+    minute: "2-digit",
+  });
+
+  console.log("data", format);
   if (error) {
     toast.error(error.message);
   }
@@ -113,7 +125,7 @@ export default function Contact() {
             />
 
             <h3>{item.username}</h3>
-            <span>{item.created_at}</span>
+            <span>{format}</span>
           </div>
         ))}
       </div>

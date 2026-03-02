@@ -1,4 +1,4 @@
-import { supabase } from "@/lib/supabase/client";
+import { createClient } from "@/lib/supabase/client";
 import { Message } from "@/type/Message";
 import toast from "react-hot-toast";
 
@@ -13,6 +13,7 @@ interface MessageData {
 export const sendMssageTosupabase = async (
   messageData: MessageData,
 ): Promise<Message> => {
+  const supabase = createClient();
   const { error, data } = await supabase
     .from("messages")
     .insert({

@@ -58,33 +58,40 @@ export default function Sidebar() {
   const [select, setSelect] = useState();
 
   return (
-    <div className="p-4 h-dvh">
-      <motion.div
-        layout
-        initial={{ scale: 0.9, y: 20 }}
-        animate={{ scale: 1, y: 0 }}
-        transition={{ duration: 0.4 }}
-        className={cn(
-          "flex  flex-col   gap-4 text-primary font-semibold bg-accent shadow-2xl border  h-full rounded-2xl p-4 ",
-        )}
-      >
-        {item.map((item) => (
-          <Link
-            onClick={() => setSelect(item.id)}
-            key={item.id}
-            href={item.ref}
-            className={cn(
-              "flex flex-col px-4 py-3 transition-transform duration-500 rounded-2xl  border hover:translate-x-3",
-              select === item.id ? "bg-primary-foreground text-primary  " : "",
-            )}
-          >
-            <div className="flex gap-4">
-              {item.icon}
-              {item.name}
-            </div>
-          </Link>
-        ))}
-      </motion.div>
+    <div
+      className="
+"
+    >
+      <div className="relative w-full p-4  h-dvh    ">
+        <motion.div
+          layout
+          initial={{ scale: 0.9, y: 20 }}
+          animate={{ scale: 1, y: 0 }}
+          transition={{ duration: 0.4 }}
+          className={cn(
+            "fixed   mr-40  gap-4 text-primary font-semibold bg-accent shadow-lg  border border-sidebar-ring h-full rounded-2xl p-4 ",
+          )}
+        >
+          {item.map((item) => (
+            <Link
+              onClick={() => setSelect(item.id)}
+              key={item.id}
+              href={item.ref}
+              className={cn(
+                "flex flex-col px-4 py-3 transition-transform duration-500 rounded-2xl  border hover:translate-x-3",
+                select === item.id
+                  ? "bg-primary-foreground text-primary  "
+                  : "",
+              )}
+            >
+              <div className="flex gap-4">
+                {item.icon}
+                {item.name}
+              </div>
+            </Link>
+          ))}
+        </motion.div>
+      </div>
     </div>
   );
 }
