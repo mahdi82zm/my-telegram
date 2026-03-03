@@ -1,7 +1,9 @@
-import React from 'react'
+import React from "react";
+
+export const metadata = {
+  title: "Saved Message",
+};
 
 export default function page() {
-  return (
-    <div>saved</div>
-  )
+  return <div>saved</div>;
 }

@@ -4,6 +4,7 @@ import Link from "next/link";
 import { motion, scale } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { useState } from "react";
+import iconSite from "@/app/icon.png";
 import {
   Bookmark,
   Group,
@@ -14,6 +15,7 @@ import {
   Settings,
   User,
 } from "lucide-react";
+import Image from "next/image";
 
 const item = [
   {
@@ -62,16 +64,18 @@ export default function Sidebar() {
       className="
 "
     >
-      <div className="relative w-full p-4  h-dvh    ">
+      <div className="relative w-full  p-4      ">
         <motion.div
           layout
           initial={{ scale: 0.9, y: 20 }}
           animate={{ scale: 1, y: 0 }}
           transition={{ duration: 0.4 }}
           className={cn(
-            "fixed   mr-40  gap-4 text-primary font-semibold bg-accent shadow-lg  border border-sidebar-ring h-full rounded-2xl p-4 ",
+            " flex-col flex h-[90vh]     gap-4 text-primary font-semibold bg-accent shadow-lg  mb-10 border border-sidebar-ring  rounded-2xl p-4 ",
           )}
         >
+          <Image alt="icon site " className={cn('size-24')} src={iconSite} width={30} height={30} />
+
           {item.map((item) => (
             <Link
               onClick={() => setSelect(item.id)}
@@ -80,7 +84,7 @@ export default function Sidebar() {
               className={cn(
                 "flex flex-col px-4 py-3 transition-transform duration-500 rounded-2xl  border hover:translate-x-3",
                 select === item.id
-                  ? "bg-primary-foreground text-primary  "
+                  ? "bg-chart-1 text-primary  "
                   : "",
               )}
             >
