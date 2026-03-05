@@ -64,7 +64,7 @@ export default function Sidebar() {
       className="
 "
     >
-      <div className="relative w-full  p-4      ">
+      <div className="relative  p-4      ">
         <motion.div
           layout
           initial={{ scale: 0.9, y: 20 }}
@@ -74,8 +74,6 @@ export default function Sidebar() {
             " flex-col flex h-[90vh]     gap-4 text-primary font-semibold bg-accent shadow-lg  mb-10 border border-sidebar-ring  rounded-2xl p-4 ",
           )}
         >
-          <Image alt="icon site " className={cn('size-24')} src={iconSite} width={30} height={30} />
-
           {item.map((item) => (
             <Link
               onClick={() => setSelect(item.id)}
@@ -83,9 +81,7 @@ export default function Sidebar() {
               href={item.ref}
               className={cn(
                 "flex flex-col px-4 py-3 transition-transform duration-500 rounded-2xl  border hover:translate-x-3",
-                select === item.id
-                  ? "bg-chart-1 text-primary  "
-                  : "",
+                select === item.id ? "bg-chart-5 text-primary  " : "",
               )}
             >
               <div className="flex gap-4">

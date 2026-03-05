@@ -16,7 +16,7 @@ export function LogoutButton() {
     router.push('/auth/login')
   }
 
-  return <Button className={cn("  hover:bg-accent")} onClick={logout}>
+  return <Button className={cn("  hover:bg-accent-foreground")} onClick={logout}>
     <LucideLogOut className={cn('')}/>
     Logout</Button>
 }

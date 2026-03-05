@@ -11,15 +11,15 @@ import Contact from "../contact/Contact";
 
 export default function ChatIndex() {
   return (
-    <div className="grid grid-cols-12 gap-4 justify-between">
-      <Toaster position="bottom-right" />
+    <div className="  w-full h-[calc(100vh-11rem)] grid grid-cols-12 gap-10  justify-between">
+      
 
       <motion.div
         initial={{ scale: 0.9, y: 20 }}
         animate={{ scale: 1, y: 0 }}
         transition={{ duration: 0.4 }}
         className={cn(
-          " col-span-7 flex flex-col w-full  h-[83vh] bg-accent shadow-2xl rounded-xl overflow-hidden border m-4",
+          " col-span-7 flex  flex-col w-full  h-full bg-accent shadow-2xl rounded-xl overflow-hidden border m-4",
         )}
       >
         {/* Header */}

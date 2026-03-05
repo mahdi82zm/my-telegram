@@ -7,7 +7,7 @@ export const metadata = {
 
 export default function page() {
   return (
-    <div>
+    <div className="h-full  w-full">
       <SettingIndex />
     </div>
   );

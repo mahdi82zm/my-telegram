@@ -21,20 +21,22 @@ export default function RootLayout({
   return (
     <html>
       <body>
-        <div className={cn("grid grid-cols-12  w-screen h-screen m-auto")}>
-          <div className="col-span-2  w-full h-full ">
-            <Sidebar />
-          </div>
-          <div className="col-span-10  pt-4 w-full h-full flex flex-col ">
-            <Providers>
-              <Toaster position="top-center" />
+        <Providers>
+          <div className={cn("grid grid-cols-12  w-screen h-screen m-auto")}>
+            <Toaster position="top-center" />
+            <div className="col-span-2  w-full h-full ">
+              <Sidebar />
+            </div>
 
-              <Header />
+            <div className="col-span-10  pt-4 w-full h-full flex flex-col ">
+              <div className="">
+                <Header />
+              </div>
 
-              <div className={cn("")}>{children}</div>
-            </Providers>
+              <div className={cn("w-full h-10/12")}>{children}</div>
+            </div>
           </div>
-        </div>
+        </Providers>
       </body>
     </html>
   );

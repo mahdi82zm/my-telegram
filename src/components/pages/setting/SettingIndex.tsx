@@ -48,21 +48,22 @@ export default function SettingIndex() {
 
   console.log(select);
   return (
-    <div className={cn("grid grid-cols-12 gap-4")}>
-      <div className={cn("col-span-2 border rounded-2xl ")}>
-        <ul className={cn("flex  flex-col my-4 justify-center items-center gap-5 ")}>
+    <div className={cn("w-full h-full mt- grid grid-cols-12 gap-4")}>
+      <div className={cn("col-span-2 border px-4 py-2 rounded-2xl ")}>
+        <ul
+          className={cn(
+            "flex w-full h-full  flex-col  justify-start items-center  gap-5 ",
+          )}
+        >
           {itemSetting.map((item) => (
             <li
+              onClick={() => setSelect(item.id)}
               className={cn(
-                "flex w-40 px-3  items-center py-3 col-span-12 border rounded-2xl hover:bg-accent ",
+                "flex  px-3 w-full  py-3 col-span-12 border rounded-2xl hover:bg-accent ",
               )}
               key={item.id}
             >
-              <button
-                className="cursor-pointer "
-                onClick={() => setSelect(item.id)}
-                value={item.name}
-              >
+              <button className="cursor-pointer " value={item.name}>
                 {item.name}
               </button>
             </li>
@@ -70,7 +71,6 @@ export default function SettingIndex() {
         </ul>
       </div>
       <div className={cn("col-span-10 border rounded-2xl px-2 py-4 ")}>
-        
         {itemSetting.map((item) =>
           item.id === select ? <div key={item.id}>{item.content}</div> : "",
         )}

@@ -4,7 +4,7 @@ import { cn } from "@/lib/utils";
 import ThemeButton from "./themeButton";
 import { useQuery } from "@tanstack/react-query";
 import { getUser } from "@/services/apiAuth";
-import { LucideUser, LucideUserSquare } from "lucide-react";
+import { LucideUser, LucideUserCircle, LucideUserSquare } from "lucide-react";
 
 export default function Header() {
   const { data, isPending } = useQuery({
@@ -21,10 +21,10 @@ export default function Header() {
         )}
       >
         <div className={cn('flex items-center gap-4')}>
+          <ThemeButton  />
           <LogoutButton />
-          <ThemeButton />
         </div>
-        <LucideUserSquare />
+        <LucideUserCircle  className="size-7 hover:text-primary"/>
       </div>
     </div>
   );
