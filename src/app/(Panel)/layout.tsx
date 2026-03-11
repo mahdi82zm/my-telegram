@@ -20,7 +20,7 @@ export default function RootLayout({
 }) {
   return (
     <html>
-      <body>
+      <body className="">
         <Providers>
           <div className={cn("grid grid-cols-12  w-screen h-screen m-auto")}>
             <Toaster position="top-center" />

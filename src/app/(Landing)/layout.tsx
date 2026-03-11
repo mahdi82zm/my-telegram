@@ -1,3 +1,4 @@
+import Footer from "@/components/Footer";
 import HeaderSite from "@/components/HeaderSite";
 import { cn } from "@/lib/utils";
 
@@ -12,11 +13,16 @@ export default function RootLayout({
 }) {
   return (
     <html>
-      <body className={cn("mx-5 ")}>
-        <div>
-          <HeaderSite />
+      <body className={cn(" min-h-screen min-w-screen ")}>
+        <div className={cn("felx flex-col px-4 h-full  w-full  ")}>
+          <div className="h-20 relative">
+            <HeaderSite />
+          </div>
+          <div className="relative h-full w-full ">{children}</div>
+          <div className={cn(" py-10")}>
+            <Footer />
+          </div>
         </div>
-        <div>{children}</div>
       </body>
     </html>
   );

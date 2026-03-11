@@ -11,7 +11,8 @@ export default function ProfileIndex() {
             src=""
             className="bg-zinc-400 size-40 rounded-full"
             alt="user-setting"
-          ></Image>
+          >
+          </Image>
           <LucidePencilLine className="size-10 absolute -translate-y-10 translate-x-24 rounded-full bg-accent p-1" />
         </div>
         <div>
@@ -24,7 +25,7 @@ export default function ProfileIndex() {
       <div className="col-span-8 border rounded  size-full p-4">
         <h4>Bio :</h4>
         <p>
-          {item}
+          
           Lorem ipsum, dolor sit amet consectetur adipisicing elit. Laudantium
           unde libero quia quo sequi voluptates quas aliquid labore officia
           mollitia nisi dolor quidem repellendus, velit debitis et illo ipsam
