@@ -13,7 +13,6 @@ export default function Account() {
     const currentParams = new URLSearchParams(String(searchParams));
     currentParams.set("sort", newSortVal);
     console.log(currentParams.values);
-    // استفاده از router برای اعمال تغییر در URL
     router.push(`?${currentParams.toString()}`);
   };
 

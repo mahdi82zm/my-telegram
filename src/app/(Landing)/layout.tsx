@@ -1,6 +1,7 @@
 import Footer from "@/components/Footer";
 import HeaderSite from "@/components/HeaderSite";
 import { cn } from "@/lib/utils";
+import { Modal } from "../_components/ui/Modal";
 
 export const metadata = {
   title: "welcome  to the  TelChatMega wepsite ",
@@ -22,6 +23,7 @@ export default function RootLayout({
           <div className={cn(" py-10")}>
             <Footer />
           </div>
+          <Modal />
         </div>
       </body>
     </html>

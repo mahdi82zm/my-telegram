@@ -3,6 +3,7 @@ import { cn } from "@/lib/utils";
 import { Providers } from "../provider";
 import { Toaster } from "react-hot-toast";
 import Header from "@/components/ui/Header";
+import { Modal } from "../_components/ui/Modal";
 
 export const metadata = {
   title: {
@@ -35,6 +36,7 @@ export default function RootLayout({
 
               <div className={cn("w-full h-10/12")}>{children}</div>
             </div>
+            <Modal/>
           </div>
         </Providers>
       </body>

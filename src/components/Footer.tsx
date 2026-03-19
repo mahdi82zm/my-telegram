@@ -14,10 +14,13 @@ export default function Footer() {
   const items = [{ id: 1, name: "مجوز ها " }];
 
   return (
-    <div className={cn("w-full h-full flex flex-col  gap-3")}>
+    <div className={cn("relative w-full h-full flex flex-col  gap-3")}>
+      <div className={cn('absolute  top-10  aspect-square rounded-full h-60 bg-chart-1')}></div>
+      <div className={cn('absolute  right-4 aspect-square rounded-full h-40 bg-chart-2')}></div>
+      <div className={cn('absolute translate-20 left-1/2 aspect-square rounded-full h-60 bg-chart-3')}></div>
       <div
         className={cn(
-          "w-full h-full border border-sidebar-border bg-accent rounded-xl  text-primary shadow-lg",
+          "w-full h-full border border-sidebar-border bg-white/4 z-1000 backdrop-blur-3xl rounded-xl  text-primary shadow-lg",
         )}
       >
         <div
