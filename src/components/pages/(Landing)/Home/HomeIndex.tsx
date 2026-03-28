@@ -26,15 +26,14 @@ import { useFormStatus } from "react-dom";
 import { useState, useTransition } from "react";
 import PortfolioItem from "@/app/_components/PortfolioItem";
 
-
 interface Comment {
-  id: number,
-  name: string,
-  avatar: string , 
-  role: string,
-  rating: number,
-  comment:string , 
-  date: string,
+  id: number;
+  name: string;
+  avatar: string;
+  role: string;
+  rating: number;
+  comment: string;
+  date: string;
 }
 
 export default function HomeIndex() {
@@ -42,7 +41,7 @@ export default function HomeIndex() {
 
   const [hover, setIsHover] = useState<boolean>(false);
 
-  const services : {id:number ,  name: string  ,  icon:React.ReactNode }[] = [
+  const services: { id: number; name: string; icon: React.ReactNode }[] = [
     {
       id: 1,
       name: "امنیت",
@@ -62,12 +61,17 @@ export default function HomeIndex() {
       id: 4,
       name: "Group and  channles",
       icon: <Users className="size-15 text-zinc-500" />,
-  
-      
     },
   ];
 
-  const portfolioItems :{id :number ,  thumbnailSrc : string , hoverSrc:string , projectName: string , projectDescription :string , projectUrl: string  } [] = [
+  const portfolioItems: {
+    id: number;
+    thumbnailSrc: string;
+    hoverSrc: string;
+    projectName: string;
+    projectDescription: string;
+    projectUrl: string;
+  }[] = [
     {
       id: 1,
       thumbnailSrc: "/images/Screenshot.png",
@@ -95,7 +99,7 @@ export default function HomeIndex() {
     // آیتم‌های بیشتر...
   ];
 
-  const comments:Comment []   = [
+  const comments: Comment[] = [
     {
       id: 1,
       name: "مهدی رضایی",
@@ -241,84 +245,90 @@ export default function HomeIndex() {
       </div>
 
       {/* فرم تماس */}
-
-      <div
-        className={cn(
-          "grid grid-cols-5 py-20 px-10 rounded-2xl  items-center gap-20 w-full  bg-accent my-50",
-        )}
-      >
-        <div className={cn("col-span-2 px-4 flex flex-col gap-3")}>
-          <p className=" text-accent-foreground">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
-            ducimus fugiat eaque corporis odio? Qui aliquid autem consequatur
-            architecto iusto corrupti, voluptatibus, totam possimus eveniet
-            expedita, voluptas ratione soluta unde ipsum explicabo provident
-            accusamus dolor. Sunt commodi qui, ea voluptatem saepe quos. Facere
-            minima distinctio ea quos sit iure totam? Dolor praesentium enim
-            consequuntur similique ex maxime quia labore suscipit, quibusdam
-            itaque, odit, a deleniti.
-          </p>
-        </div>
-
-        <div
-          className="col-span-2 w-full flex items-end  justify-end
-        "
-        >
-          {isPending ? (
-            <LucideLoader2 />
-          ) : (
-            <div className={cn("relative w-full h-full ")}>
-              <div
-                className={cn(
-                  "absolute rounded translate-8 aspect-square h-30 bg-yellow-500",
-                  `${hover ? "animate-bounce " : ""}`,
-                )}
-              ></div>
-              <div
-                className={cn(
-                  "absolute rounded-full  right-0 top-50  aspect-square h-30 bg-blue-600 ",
-                  `${hover ? "animate-bounce " : ""}`,
-                )}
-              ></div>
-              <form
-                onMouseLeave={() => setIsHover(false)}
-                onMouseEnter={hamdleHover}
-                action={sendData}
-                onClick={handleSubmit}
-                className={cn(
-                  `col-span-1 flex flex-col h-full border border-border w-full p-4 py-10 rounded-xl bg-white/10 backdrop-blur-2xl  gap-3   `,
-                  ``,
-                )}
-              >
-                <label>
-                  name
-                  <Input type="text" name="name" />
-                </label>
-                <label>
-                  username
-                  <Input type="text" name="username" />
-                </label>
-                <label>
-                  descriptions
-                  <textarea  className="flex items-center justify-center w-full rounded-xl border-2 px-2 py-4 border-border  backdrop-blur-2xl shadow-2xl" placeholder="write  your description...." name="descriptions" />
-                </label>
-                <Button2></Button2>
-              </form>
-            </div>
-          )}
-        </div>
-
-        {/* contact us */}
-
+      <div className={cn(" flex items-center justify-center")}>
         <div
           className={cn(
-            " col-span-1  relative  aspect-square  flex text-4xl right-0   items-center justify-center   ",
+            "grid grid-cols-5 py-20 px-10 rounded-2xl  items-center gap-20 container justify-center   bg-accent my-50",
           )}
         >
-          <div className="absolute h-full rotate-45 rounded-2xl aspect-square  bg-accent"></div>
-          <h2 className="sticky">Contact Us </h2>
+          <div className={cn("col-span-2 px-4 flex flex-col gap-3")}>
+            <p className=" text-accent-foreground">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
+              ducimus fugiat eaque corporis odio? Qui aliquid autem consequatur
+              architecto iusto corrupti, voluptatibus, totam possimus eveniet
+              expedita, voluptas ratione soluta unde ipsum explicabo provident
+              accusamus dolor. Sunt commodi qui, ea voluptatem saepe quos.
+              Facere minima distinctio ea quos sit iure totam? Dolor praesentium
+              enim consequuntur similique ex maxime quia labore suscipit,
+              quibusdam itaque, odit, a deleniti.
+            </p>
+          </div>
+
+          <div
+            className="col-span-2 w-full flex items-end  justify-end
+        "
+          >
+            {isPending ? (
+              <LucideLoader2 />
+            ) : (
+              <div className={cn("relative w-full h-full ")}>
+                <div
+                  className={cn(
+                    "absolute rounded translate-8 aspect-square h-30 bg-yellow-500",
+                    `${hover ? "animate-bounce " : ""}`,
+                  )}
+                ></div>
+                <div
+                  className={cn(
+                    "absolute rounded-full  right-0 top-50  aspect-square h-30 bg-blue-600 ",
+                    `${hover ? "animate-bounce " : ""}`,
+                  )}
+                ></div>
+                <form
+                  onMouseLeave={() => setIsHover(false)}
+                  onMouseEnter={hamdleHover}
+                  action={sendData}
+                  onClick={handleSubmit}
+                  className={cn(
+                    `col-span-1 flex flex-col h-full border border-border w-full p-4 py-10 rounded-xl bg-white/10 backdrop-blur-2xl  gap-3   `,
+                    ``,
+                  )}
+                >
+                  <label>
+                    name
+                    <Input type="text" name="name" />
+                  </label>
+                  <label>
+                    username
+                    <Input type="text" name="username" />
+                  </label>
+                  <label>
+                    descriptions
+                    <textarea
+                      className="flex items-center justify-center w-full rounded-xl border-2 px-2 py-4 border-border  backdrop-blur-2xl shadow-2xl"
+                      placeholder="write  your description...."
+                      name="descriptions"
+                    />
+                  </label>
+                  <Button2></Button2>
+                </form>
+              </div>
+            )}
+          </div>
+
+          {/* contact us */}
+
+          <div
+            className={cn(
+              " col-span-1  relative  aspect-square  flex text-4xl right-0   items-center justify-center   ",
+            )}
+          >
+            <div className="absolute h-full rotate-45 rounded-2xl aspect-square  bg-accent"></div>
+            <h2 className="sticky">Contact Us </h2>
+          </div>
         </div>
       </div>
+
       {/* نمونه کارها */}
       {/* <div>
         <p className=" border-b-2    border-dashed flex relative items-center justify-center my-10 ">
@@ -339,23 +349,25 @@ export default function HomeIndex() {
         </span>
         <hr className="my-5 col-span-2 w-full" />
       </div>
-      <div className={cn("grid  grid-cols-6 gap-3 ")}>
-        {portfolioItems.map((item) => (
-          <div
-            key={item.id}
-            className={cn(
-              "col-span-2  border-2 border-border shadow shadow-accent   rounded-2xl  ",
-            )}
-          >
-            <PortfolioItem
-              thumbnailSrc={item.thumbnailSrc}
-              hoverSrc={item.hoverSrc}
-              projectName={item.projectName}
-              projectDescription={item.projectDescription}
-              projectUrl={item.projectUrl}
-            />
-          </div>
-        ))}
+      <div className={cn('flex items-center justify-center')}>
+        <div className={cn("container grid   grid-cols-6 gap-3 ")}>
+          {portfolioItems.map((item) => (
+            <div
+              key={item.id}
+              className={cn(
+                "col-span-2  border-2 border-border shadow shadow-accent   rounded-2xl  ",
+              )}
+            >
+              <PortfolioItem
+                thumbnailSrc={item.thumbnailSrc}
+                hoverSrc={item.hoverSrc}
+                projectName={item.projectName}
+                projectDescription={item.projectDescription}
+                projectUrl={item.projectUrl}
+              />
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* نمایش  app  */}
@@ -389,7 +401,8 @@ export default function HomeIndex() {
       </div>
 
       {/* کارت های نظرات   */}
-      <div className={cn("grid  grid-cols-4 grid-rows-1 gap-5   ")}>
+      <div className={cn('flex items-center justify-center')}>
+          <div className={cn("grid container  grid-cols-4 grid-rows-1 gap-5   ")}>
         {comments.map((text) => (
           <div
             className={cn(
@@ -397,9 +410,17 @@ export default function HomeIndex() {
             )}
             key={text.id}
           >
-            <div className={cn('absolute right-2 aspect-square h-40 bg-chart-4')}></div>
-            <div className={cn('absolute left-2 aspect-square h-40 bg-chart-5')}></div>
-            <div className={cn("flex flex-col items-center justify-center bg-white/3 rounded-xl backdrop-blur-3xl ")}>
+            <div
+              className={cn("absolute right-2 aspect-square h-40 bg-chart-4")}
+            ></div>
+            <div
+              className={cn("absolute left-2 aspect-square h-40 bg-chart-5")}
+            ></div>
+            <div
+              className={cn(
+                "flex flex-col items-center justify-center bg-white/3 rounded-xl backdrop-blur-3xl ",
+              )}
+            >
               <LucideImage className={cn("size-31 py-5")} />
               {/* <Image
               alt={text.role}
@@ -432,6 +453,8 @@ export default function HomeIndex() {
           </div>
         ))}
       </div>
+      </div>
+    
     </div>
   );
 }

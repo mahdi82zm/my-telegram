@@ -1,6 +1,8 @@
 import React from "react";
 import { create } from "zustand";
 
+// type  contetnType = React.ReactNode | (() => React.ReactNode);
+
 interface ModalProps {
   isOpen: boolean;
   content: React.ReactNode;

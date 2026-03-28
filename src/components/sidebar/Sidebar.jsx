@@ -8,7 +8,12 @@ import iconSite from "@/app/icon.png";
 import {
   Bookmark,
   Group,
+  LucideHamburger,
+  LucideMenu,
+  LucidePanelLeftClose,
+  LucidePanelRightClose,
   LucidePersonStanding,
+  LucideSquareMenu,
   Megaphone,
   MessageCircle,
   Save,
@@ -16,6 +21,7 @@ import {
   User,
 } from "lucide-react";
 import Image from "next/image";
+import { Button } from "../ui/button";
 
 const item = [
   {
@@ -59,12 +65,14 @@ const item = [
 export default function Sidebar() {
   const [select, setSelect] = useState();
 
+  const [isOpen, setIsOpen] = useState(true);
+
   return (
     <div
-      className="
+      className="relative
 "
     >
-      <div className="relative  p-4      ">
+      <div className="fixed z-100 laptop:absolute  p-4   transition-all transform duration-700    ">
         <motion.div
           layout
           initial={{ scale: 0.9, y: 20 }}
@@ -74,6 +82,9 @@ export default function Sidebar() {
             " flex-col flex h-[90vh]     gap-4 text-primary font-semibold bg-accent shadow-lg  mb-10 border border-sidebar-ring  rounded-2xl p-4 ",
           )}
         >
+          <Button onClick={() => setIsOpen((prev) => !prev)} className={cn("laptop:hidden" , `laptop:`)}>
+            {isOpen ? <LucidePanelRightClose /> : <LucidePanelLeftClose />}
+          </Button>
           {item.map((item) => (
             <Link
               onClick={() => setSelect(item.id)}
@@ -84,9 +95,16 @@ export default function Sidebar() {
                 select === item.id ? "bg-chart-5 text-primary  " : "",
               )}
             >
-              <div className="flex gap-4">
-                {item.icon}
-                {item.name}
+              <div className="flex items-center gap-4">
+                <span className=""> {item.icon}</span>
+
+                <span
+                  className={cn(
+                    ` transition-all duration-200  ${isOpen ? "" : "hidden absolute transition-transform duration-700  opacity-0"}`,
+                  )}
+                >
+                  {item.name}
+                </span>
               </div>
             </Link>
           ))}
