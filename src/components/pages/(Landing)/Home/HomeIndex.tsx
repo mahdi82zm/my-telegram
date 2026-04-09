@@ -1,4 +1,6 @@
 "use client";
+
+
 import Image from "next/image";
 import imageHero from "/hakhamanesh.png";
 import { cn } from "@/lib/utils";
@@ -156,36 +158,26 @@ export default function HomeIndex() {
     setIsHover(true);
   };
 
-  return (
-    <div className="relative w-full flex  flex-col h-full">
-      <div className={cn("relative  w-full h-full grid grid-cols-12 ")}>
-        <div className="relative col-span-4">
-          {" "}
-          <div className="z-10 absolute aspect-square rounded-xl rotate-45 flex  items-center justify-center -translate-x-1/2 -translate-y-15 h-150 bg-yellowPrimary "></div>{" "}
-          <div className="z-10 absolute   overflow-hidden flex  transition-transform ease-in-out duration-300   hover:rotate-12    h-100 translate-y-10 -translate-x-1/4    mx-auto  aspect-square items-center justify-center   ">
-            <Image
-              alt="Herosection"
-              fill
-              className="object-cover rounded-full "
-              src={"/images/baner2.png"}
-            ></Image>
 
-            {/* <Image
-           alt="Herosection"
-            fill
-             className="object-cover rounded-2xl "
-           src={"/hakhamanesh.png"}
-           ></Image>
-           <p className="text-accent text-4xl font-bold  z-5 ">
-            TelChatMega یک اپ مطمئن برای ارتباط با دوستان خود{" "}
-            </p> */}
-          </div>{" "}
+
+  return (
+    <div className="relative  mt-10 w-full flex  flex-col h-full">
+      <div className={cn("relative   w-full h-full grid grid-cols-12 items-center ")}>
+        <div className="relative col-span-12 tablet:col-span-4">
+          <div className="relative aspect-square w-full  ">
+            <Image
+              className="absolute rounded-2xl"
+              alt=""
+              fill
+              src="/images/baner2.png"
+            />
+          </div>
         </div>
         <div
           dir="rtl"
-          className="relative col-span-8 flex flex-col gap-9 items-center justify-end mx-auto w-full h-96  "
+          className="relative col-span-12 tablet:col-span-8 flex flex-col gap-9 items-center justify-end mx-auto w-full h-96  "
         >
-          <h3 dir="rtl" className="   text-5xl font-bold  ">
+          <h3 dir="rtl" className="   text-xl tablet:text-2xl font-bold  ">
             {" "}
             TelChatMega یک اپ مطمئن برای ارتباط با دوستان خود{" "}
           </h3>
@@ -216,23 +208,23 @@ export default function HomeIndex() {
             "z-1000   transition-all ease-linear duration-700  py-10 px-8 rounded-2xl gap-10 grid grid-cols-12 justify-between ",
           )}
         >
-          <div
+          {/* <div
             className={cn(
               "col-span-6 relative h-full flex text-4xl   items-center justify-center  w-full ",
             )}
           >
             <div className="absolute h-full rotate-45 rounded-2xl aspect-square  bg-accent"></div>
             <h2 className="sticky">Services </h2>
-          </div>
-          <div className=" col-span-6 grid  grid-cols-8 items-center justify-end gap-12">
+          </div> */}
+          <div className=" col-span-12 grid  grid-cols-8 items-center justify-end gap-4 md:gap-12">
             {services.map((item) => (
-              <div key={item.id} className="relative col-span-4">
-                <div className="absolute inset-0 animate-pulse top-10 delay-1000 duration-300 transition-transform ease-in-out  aspect-square h-20 bg-amber-400"></div>
-                <div className="absolute animate-pulse  aspect-square right-0 top-20 h-20 bg-blue-600"></div>
+              <div key={item.id} className="relative  col-span-8 tablet:col-span-4 laptop:col-span-2">
+                <div className="absolute inset-0 animate-pulse top-10 delay-1000 duration-300 transition-transform ease-in-out  aspect-square h-10 laptop:h-20 bg-amber-400"></div>
+                <div className="absolute animate-pulse  aspect-square left-20 top-20 h-10 laptop:h-20 bg-blue-600"></div>
                 <div
                   key={item.id}
                   className={cn(
-                    "h-40 border sticky bg-white/5  transition-all duration-300 backdrop-blur-2xl ease-in hover:text-yellowPrimary hover:text-2xl  border-border rounded shadow-lg  flex flex-col items-center justify-center  ",
+                    "h-40 border sticky  bg-white/5 w-full  transition-all duration-300 backdrop-blur-2xl ease-in hover:text-yellowPrimary hover:text-2xl  border-border rounded shadow-lg  flex flex-col items-center justify-center  ",
                   )}
                 >
                   <span className="">{item.icon}</span>
@@ -248,10 +240,10 @@ export default function HomeIndex() {
       <div className={cn(" flex items-center justify-center")}>
         <div
           className={cn(
-            "grid grid-cols-5 py-20 px-10 rounded-2xl  items-center gap-20 container justify-center   bg-accent my-50",
+            "grid grid-cols-6 py-20 px-10 rounded-2xl  items-center gap-20  justify-center   bg-accent my-50",
           )}
         >
-          <div className={cn("col-span-2 px-4 flex flex-col gap-3")}>
+          <div className={cn("col-span-6 tablet:col-span-3 px-4 flex flex-col gap-3")}>
             <p className=" text-accent-foreground">
               Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolores
               ducimus fugiat eaque corporis odio? Qui aliquid autem consequatur
@@ -265,7 +257,7 @@ export default function HomeIndex() {
           </div>
 
           <div
-            className="col-span-2 w-full flex items-end  justify-end
+            className="col-span-6 tablet:col-span-3 w-full flex items-end  justify-end
         "
           >
             {isPending ? (
@@ -280,7 +272,7 @@ export default function HomeIndex() {
                 ></div>
                 <div
                   className={cn(
-                    "absolute rounded-full  right-0 top-50  aspect-square h-30 bg-blue-600 ",
+                    "absolute rounded-full  left-10 top-50  aspect-square h-30 bg-blue-600 ",
                     `${hover ? "animate-bounce " : ""}`,
                   )}
                 ></div>
@@ -290,7 +282,7 @@ export default function HomeIndex() {
                   action={sendData}
                   onClick={handleSubmit}
                   className={cn(
-                    `col-span-1 flex flex-col h-full border border-border w-full p-4 py-10 rounded-xl bg-white/10 backdrop-blur-2xl  gap-3   `,
+                    ` flex flex-col h-full border border-border w-full p-4 py-10 rounded-xl bg-white/10 backdrop-blur-2xl  gap-3   `,
                     ``,
                   )}
                 >
@@ -318,14 +310,14 @@ export default function HomeIndex() {
 
           {/* contact us */}
 
-          <div
+          {/* <div
             className={cn(
               " col-span-1  relative  aspect-square  flex text-4xl right-0   items-center justify-center   ",
             )}
           >
             <div className="absolute h-full rotate-45 rounded-2xl aspect-square  bg-accent"></div>
             <h2 className="sticky">Contact Us </h2>
-          </div>
+          </div> */}
         </div>
       </div>
 
@@ -349,13 +341,13 @@ export default function HomeIndex() {
         </span>
         <hr className="my-5 col-span-2 w-full" />
       </div>
-      <div className={cn('flex items-center justify-center')}>
-        <div className={cn("container grid   grid-cols-6 gap-3 ")}>
+      <div className={cn("flex items-center justify-center")}>
+        <div className={cn(" grid  w-full rounded  px-4 py-2  grid-cols-6 gap-3 ")}>
           {portfolioItems.map((item) => (
             <div
               key={item.id}
               className={cn(
-                "col-span-2  border-2 border-border shadow shadow-accent   rounded-2xl  ",
+                "col-span-6 tablet:col-span-2  border-2 border-border shadow shadow-accent   rounded-2xl  ",
               )}
             >
               <PortfolioItem
@@ -401,60 +393,59 @@ export default function HomeIndex() {
       </div>
 
       {/* کارت های نظرات   */}
-      <div className={cn('flex items-center justify-center')}>
-          <div className={cn("grid container  grid-cols-4 grid-rows-1 gap-5   ")}>
-        {comments.map((text) => (
-          <div
-            className={cn(
-              "relative col-span-1  rounded-xl h-full row-auto flex flex-col items-center justify-center",
-            )}
-            key={text.id}
-          >
-            <div
-              className={cn("absolute right-2 aspect-square h-40 bg-chart-4")}
-            ></div>
-            <div
-              className={cn("absolute left-2 aspect-square h-40 bg-chart-5")}
-            ></div>
+      <div className={cn("flex items-center justify-center")}>
+        <div className={cn("grid   grid-cols-12 grid-rows-1 gap-5   ")}>
+          {comments.map((text) => (
             <div
               className={cn(
-                "flex flex-col items-center justify-center bg-white/3 rounded-xl backdrop-blur-3xl ",
+                "relative col-span-12 tablet:col-span-6 laptop:col-span-3 rounded-xl h-full row-auto flex flex-col items-center justify-center",
               )}
+              key={text.id}
             >
-              <LucideImage className={cn("size-31 py-5")} />
-              {/* <Image
+              <div
+                className={cn("absolute right-2 aspect-square h-40 bg-chart-4")}
+              ></div>
+              <div
+                className={cn("absolute left-2 aspect-square h-40 bg-chart-5")}
+              ></div>
+              <div
+                className={cn(
+                  "flex flex-col items-center justify-center bg-white/3 rounded-xl backdrop-blur-3xl ",
+                )}
+              >
+                <LucideImage className={cn("size-31 py-5")} />
+                {/* <Image
               alt={text.role}
               className={cn("rounded-full ")}
               width={10}
               height={10}
               src={text.avatar}
             /> */}
-              <div dir="rtl" className={cn("px-8 py-4 ")}>
-                <p className="text-2xl font-semibold"> {text.name}</p>
-                <p className="text-accent-foreground">{text.comment}</p>
+                <div dir="rtl" className={cn("px-8 py-4 ")}>
+                  <p className="text-2xl font-semibold"> {text.name}</p>
+                  <p className="text-accent-foreground">{text.comment}</p>
+                </div>
+                <div className="flex gap-3">
+                  <div className="bg-primary-foreground  flex px-4  items-center justify-center py-2 mx-auto my-4 rounded-2xl">
+                    {text.date}
+                  </div>
+                  <div className="bg-primary-foreground  flex px-4  items-center justify-center py-2 mx-auto my-4 rounded-2xl">
+                    {text.rating}✨
+                  </div>
+                </div>{" "}
+                <p
+                  dir="rtl"
+                  className={cn(
+                    "bg-primary-foreground w-full flex py-2 px-1 rounded-b-xl",
+                  )}
+                >
+                  {text.role}
+                </p>
               </div>
-              <div className="flex gap-3">
-                <div className="bg-primary-foreground  flex px-4  items-center justify-center py-2 mx-auto my-4 rounded-2xl">
-                  {text.date}
-                </div>
-                <div className="bg-primary-foreground  flex px-4  items-center justify-center py-2 mx-auto my-4 rounded-2xl">
-                  {text.rating}✨
-                </div>
-              </div>{" "}
-              <p
-                dir="rtl"
-                className={cn(
-                  "bg-primary-foreground w-full flex py-2 px-1 rounded-b-xl",
-                )}
-              >
-                {text.role}
-              </p>
             </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </div>
-      </div>
-    
     </div>
   );
 }
@@ -464,3 +455,23 @@ export function Button2() {
 
   return <Button>{pending ? "Submitting..." : "Submit"}</Button>;
 }
+
+// <div className="z-10 absolute aspect-square rounded-xl rotate-45 flex  items-center justify-center -translate-x-1/2 -translate-y-15 h-150 bg-yellowPrimary "></div>{" "}
+//           <div className="z-10 absolute   overflow-hidden flex  transition-transform ease-in-out duration-300   hover:rotate-12    h-100 translate-y-10 -translate-x-1/4    mx-auto  aspect-square items-center justify-center   ">
+//             <Image
+//               alt="Herosection"
+//               fill
+//               className="object-cover rounded-full "
+//               src={"/images/baner2.png"}
+//             ></Image>
+
+//             {/* <Image
+//            alt="Herosection"
+//             fill
+//              className="object-cover rounded-2xl "
+//            src={"/hakhamanesh.png"}
+//            ></Image>
+//            <p className="text-accent text-4xl font-bold  z-5 ">
+//             TelChatMega یک اپ مطمئن برای ارتباط با دوستان خود{" "}
+//             </p> */}
+//           </div>

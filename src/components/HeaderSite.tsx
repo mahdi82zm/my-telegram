@@ -29,6 +29,7 @@ import { SignUpForm } from "./sign-up-form";
 import headerModal from "./headerModal";
 import HeaderModal from "./headerModal";
 
+
 interface Items {
   id: number;
   name: string;
@@ -37,12 +38,16 @@ interface Items {
   ref: string;
 }
 
+
+
 export default function HeaderSite() {
   const [open, setIsOpen] = useState(false);
 
   const { OpenModal } = useModal();
 
   const router = useRouter();
+
+ 
 
   const items: Items[] = [
     {
@@ -79,7 +84,7 @@ export default function HeaderSite() {
     <div className="relative ">
       <div
         className={cn(
-          "fixed top-0 z-50 grid justify-center px-10 w-full grid-cols-12 gap-5 my-5 ",
+          "fixed top-0 z-50 grid justify-between  px-10  w-full grid-cols-12 gap-5 my-5 ",
         )}
       >
         <nav
@@ -99,38 +104,40 @@ export default function HeaderSite() {
           ))}
         </nav>
 
-        {open ? (
-          <div className="z-2000 fixed -translate-5 h-screen w-screen bg-white/3 backdrop-blur-3xl">
-            <nav
-              className={cn(
-                "fixed translate-3  z-3000 rounded-2xl px-4 py-2 w-2/3   gap-1 items-center justify-center bg-primary-foreground backdrop-blur-3xl h-[90vh]",
-              )}
+        <div
+          onClick={() => setIsOpen(false)}
+          className={`   transition-all overflow-hidden  duration-300 ease-in-out ${open ? "opacity-100 " : "opacity-0 invisible "} -translate-5  z-2000 fixed   h-screen w-screen bg-white/3 backdrop-blur-3xl`}
+        >
+          <nav
+            className={cn(
+              "fixed translate-3  z-3000 rounded-2xl px-4 py-2 w-2/3   gap-1 items-center justify-center bg-primary-foreground backdrop-blur-3xl h-[90vh]",
+              `transition-all  duration-500 ease-in ${open ? "opacity-100 " : "opacity-0 translate-x-full"}`,
+            )}
+          >
+            <LucidePanelLeftOpen
+              className="my-6"
+              onClick={() => setIsOpen(false)}
+            />
+            <div
+              className={cn(`flex flex-col gap-4 items-start justify-center `)}
             >
-              <LucidePanelLeftOpen
-                className="my-6"
-                onClick={() => setIsOpen(false)}
-              />
-              <div className="flex flex-col gap-4 items-start justify-center ">
-                {items.map((item) => (
-                  <Link
-                    key={item.id}
-                    href={item.ref}
-                    className="flex gap-4   hover:text-chart-4 transition-all duration-200 hover:border-b-2 hover:translate-y-1 w-full h-full"
-                  >
-                    <span>{item.icon}</span>
-                    {item.name}
-                  </Link>
-                ))}
-              </div>
-            </nav>
-          </div>
-        ) : (
-          ""
-        )}
+              {items.map((item) => (
+                <Link
+                  key={item.id}
+                  href={item.ref}
+                  className="flex gap-4  py-4  transition-transform duration-200 ease-in-out  border-b-2 border-border hover:translate-x-3 hover:text-yellowPrimary w-full h-full"
+                >
+                  <span>{item.icon}</span>
+                  <span> {item.name}</span>
+                </Link>
+              ))}
+            </div>
+          </nav>
+        </div>
 
         <div className="flex bg-white/4 z-1000 backdrop-blur-2xl justify-end gap-5 rounded-2xl col-span-12 laptop:col-span-4  shadow px-8 py-4">
           <Button onClick={() => router.push("/")}>
-            ChatMega <LucideSend className="bg-accent-foreground" />{" "}
+            ChatMega <LucideSend />
           </Button>
           <Button onClick={() => OpenModal(<HeaderModal />)}>
             <LucideUser className="size-5" />

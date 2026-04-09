@@ -17,10 +17,10 @@ export default function Footer() {
     <div className={cn("relative w-full h-full flex flex-col  gap-3")}>
       <div className={cn('absolute  top-10  aspect-square rounded-full h-60 bg-chart-1')}></div>
       <div className={cn('absolute  right-4 aspect-square rounded-full h-40 bg-chart-2')}></div>
-      <div className={cn('absolute translate-20 left-1/2 aspect-square rounded-full h-60 bg-chart-3')}></div>
+      <div className={cn('absolute top-40 right-10 aspect-square rounded-full h-[20%] bg-chart-3')}></div>
       <div
         className={cn(
-          "w-full h-full border border-sidebar-border bg-white/4 z-1000 backdrop-blur-3xl rounded-xl  text-primary shadow-lg",
+          "w-full h-full border border-sidebar-border bg-white/4  backdrop-blur-3xl rounded-xl  text-primary shadow-lg",
         )}
       >
         <div
@@ -28,7 +28,7 @@ export default function Footer() {
             "grid grid-cols-12  items-start  justify-start gap-3  py-6",
           )}
         >
-          <div className={cn("col-span-4  flex flex-col py-2 px-4 h-full ")}>
+          <div className={cn("col-span-12 tablet:col-span-4  flex flex-col py-2 px-4 h-full ")}>
             <div className="flex  border-b-2">
               <p className="text-2xl ">Validators</p>
               <LucideVault />
@@ -37,14 +37,14 @@ export default function Footer() {
 
           <div
             className={cn(
-              "col-span-4 flex flex-col  gap-4   py-2 px-4 h-full   border-x-2",
+              "col-span-12 tablet:col-span-4 flex  flex-col  gap-4   py-2 px-4 h-full   border-x-2",
             )}
           >
             <div className="flex   border-b-2">
               <p className="text-2xl "> Contact us</p>
               <LucideContact />
             </div>
-            <div className="flex flex-col gap-5">
+            <div className="flex tablet:flex-col gap-5">
               <Button className="bg-primary size-10">
                 <LucideInstagram className="size-8" />
               </Button>
@@ -60,7 +60,7 @@ export default function Footer() {
             </div>
           </div>
 
-          <div className={cn("col-span-4 flex flex-col  py-2 px-4  ")}>
+          <div className={cn("col-span-12 tablet:col-span-4 flex flex-col  py-2 px-4  ")}>
             <div className="flex  border-b-2">
               <p className={cn("text-2xl ")}>About us</p>
               <LucideContact />

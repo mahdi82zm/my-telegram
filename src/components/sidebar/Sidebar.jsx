@@ -26,37 +26,37 @@ import { Button } from "../ui/button";
 const item = [
   {
     id: 1,
-    icon: <User />,
+    icon: <User  />,
     name: "Profile",
     ref: "/profile",
   },
   {
     id: 2,
-    icon: <Settings />,
+    icon: <Settings  />,
     name: "setting",
     ref: "/setting",
   },
   {
     id: 3,
-    icon: <Bookmark />,
+    icon: <Bookmark  />,
     name: "Saved Message",
     ref: "/saved",
   },
   {
     id: 4,
-    icon: <MessageCircle />,
+    icon: <MessageCircle  />,
     name: "Chat",
     ref: "/chat",
   },
   {
     id: 5,
-    icon: <Group />,
+    icon: <Group  />,
     name: "group",
     ref: "/group",
   },
   {
     id: 6,
-    icon: <Megaphone />,
+    icon: <Megaphone  />,
     name: "Channle",
     ref: "/channle",
   },
@@ -64,7 +64,7 @@ const item = [
 
 export default function Sidebar() {
   const [select, setSelect] = useState();
-
+  
   const [isOpen, setIsOpen] = useState(true);
 
   return (
@@ -95,12 +95,12 @@ export default function Sidebar() {
                 select === item.id ? "bg-chart-5 text-primary  " : "",
               )}
             >
-              <div className="flex items-center gap-4">
-                <span className=""> {item.icon}</span>
+              <div className={cn("flex items-center  gap-4" , )}>
+                <span className="text-2xl"> {item.icon}</span>
 
                 <span
                   className={cn(
-                    ` transition-all duration-200  ${isOpen ? "" : "hidden absolute transition-transform duration-700  opacity-0"}`,
+                    ` transition-all duration-200  ${isOpen ? "" : "absolute  transition-transform duration-700  opacity-0"}`,
                   )}
                 >
                   {item.name}

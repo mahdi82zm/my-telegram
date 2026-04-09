@@ -5,9 +5,6 @@ import { cn } from "@/lib/utils";
 import Image from "next/image";
 
 export default function AboutIndex() {
-
-
-
   return (
     <div
       className={cn(
@@ -26,7 +23,6 @@ export default function AboutIndex() {
         ما ارائه‌ی راهکاری بود که با طراحی مینیمال و عملکرد روان، زندگی دیجیتال
         را راحت‌تر کند.»
       </p>
-
       <ul>
         <h3
           className="text-2xl font-semibold
@@ -37,9 +33,18 @@ export default function AboutIndex() {
         <li> سادگی در استفاده</li>
         <li>احترام به داده‌ها و حریم خصوصی کاربر</li>
         <li>پشتیبانی مداوم و به‌روز</li>
-      </ul>
-      <div className="w-full h-full flex gap-5 items-center justify-between" >
-        <form className="flex flex-col bg-primary-foreground px-10 py-5 w-1/2 gap-4 rounded-xl">
+      </ul>{" "}
+      <div className="w-full h-full  flex flex-col tablet:flex-row gap-5 items-center justify-between">
+        {" "}
+        <div className="relative w-full tablet:w-1/2  aspect-square">
+          <Image
+            alt="about iamge"
+            className="rounded-xl"
+            src={"/about.png"}
+            fill
+          />
+        </div>
+        <form className="flex flex-col bg-primary-foreground px-10 w-full py-5 tablet:w-1/2 gap-4 rounded-xl">
           <h3>فرم نظر سنجی </h3>
           <label htmlFor="name">شماره تلفن : </label>
           <Input
@@ -58,9 +63,6 @@ export default function AboutIndex() {
             placeholder="حداکثر  100 کاراکتر  استفاده کنید    ...."
           ></textarea>
         </form>
-        <div className="relative w-1/2  aspect-square">
-          <Image alt="about iamge" className="rounded-xl" src={"/about.png"} fill />
-        </div>
       </div>
     </div>
   );
