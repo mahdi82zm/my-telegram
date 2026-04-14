@@ -15,26 +15,51 @@ import { ChatWindow } from "../chat/ChatWindow";
 
 import { sendMssageTosupabase } from "../../services/messageService";
 
-export async function DispMessage() {
-  const supabase = createClient();
+import getServerSideProp from "@/lib/actionsApi/contactListAction";
 
-  const { data: messages, error } = await supabase
-    .from("messages")
-    .select("content");
 
-  const content = messages?.map((item) => item.content).join(" ");
-  console.log("message is:  ", content);
-  return content;
+
+
+export function DispMessage(id) {
+  // const supabase = createClient();
+
+  // const users = getServerSideProp()
+
+  // console.log(users, "users is this ")
+
+  // const { data: messages, error } = await supabase
+  //   .from("messages")
+  //   .select("content");
+
+  // const content = messages?.map((item) => item.content).join(" ");
+  // console.log("message is:  ", content);
+  // return content;
+  const { addMessage } = useChatStore()
+
+  const { data: messages, isLoading, error } = useQuery({
+    queryKey: ["contactMsg"],
+    queryFn: FetchContact
+  })
+  if (error) {
+    console.error(error)
+  }
+
+  const content = messages.map((item) => item.messages);
+  const user = messages.map((item) => item.id == id ? item.name : "شروع چت");
+  console.log(content , user  , 'disomsg')
+  addMessage(content, user)
+  console.log('content is  ', content);
+  return content
 }
 
 export default function Contact() {
   const [idUser, setIdUser] = useState(0);
 
-  const [newMes, setNewMes] = useState("");
   const { data, isLoading, error } = useQuery({
     queryKey: ["contact"],
     queryFn: FetchContact,
   });
+
 
   const time = data?.[0].created_at;
 
@@ -48,7 +73,7 @@ export default function Contact() {
     minute: "2-digit",
   });
 
-  console.log("data", format);
+
   if (error) {
     toast.error(error.message);
   }
@@ -61,12 +86,28 @@ export default function Contact() {
     data: messageData,
     isLoading: pending,
     error: erroMsgs,
-  } = useQuery({
+  } = useQuery<string | null, Error>({
     queryKey: ["message"],
     queryFn: DispMessage,
   });
 
-  console.log("messageData", messageData);
+
+
+  useEffect(() => {
+    const fetchuserFromApi = async () => {
+      try {
+        const res = fetch('/api/users')
+        if (!res.ok) {
+          throw new Error(`Http Error ! status : ${(await res).status}`)
+        }
+        const users = (await res).json
+        return users
+      } catch (error) {
+        console.error("Error fetching  users from  api routes,", error)
+      }
+    }
+    fetchuserFromApi();
+  }, [])
 
   // useEffect(() => {
   //   const fetchMessage = async () => {
@@ -86,7 +127,7 @@ export default function Contact() {
     setIdUser(id);
 
     addMessage(messageData, "other");
-    console.log(idUser);
+    DispMessage(id)
     // if(id === )
   };
 
@@ -95,11 +136,11 @@ export default function Contact() {
       initial={{ scale: 0.9, y: 20 }}
       animate={{ scale: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="bg-accent shadow-2xl rounded-xl m-4 flex flex-col w-full col-span-4 border relative"
+      className="  bg-accent shadow-2xl rounded-xl m-4 flex flex-col w-full h-full overflow-scroll col-span-4 border relative"
     >
       <div className="relative h-full w-full">
         <div className="border-b bg-primary-foreground rounded-xl">
-          <h3 className="text-lg font-semibold text-blue-700 p-4">Contact </h3>
+          <h3 className="text-lg font-semibold text-blue-700 p-4 sticky">Contact </h3>
         </div>
         {isLoading && (
           <div className="flex w-full h-full items-center justify-center">
@@ -110,6 +151,12 @@ export default function Contact() {
             />
           </div>
         )}
+
+        {/* fake api  in next  contact list */}
+
+
+        {/* supabase  disp  contact list   */}
+
         {data?.map((item) => (
           <div
             key={item.id}
@@ -117,15 +164,15 @@ export default function Contact() {
             className="flex items-center  px-4 py-2 gap-5 border m-3 rounded-2xl hover:bg-accent cursor-pointer"
           >
             <Image
-              src={String(item.avatar_url)}
+              src={String(item.image)}
               width={100}
               height={100}
-              alt={String(item.username)}
+              alt={String(item.name)}
               className="rounded-full size-14"
             />
 
-            <h3>{item.username}</h3>
-            <span>{format}</span>
+            <h3>{item.name}</h3>
+            <span>{ }</span>
           </div>
         ))}
       </div>

@@ -6,9 +6,11 @@ import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 import { createClient } from "@/lib/supabase/client";
 import toast from "react-hot-toast";
+import { useQuery } from "@tanstack/react-query";
+import FetchContact from "../contact/fetchContact";
 
 const MessageBuble: React.FC<{ message: ChatMessage }> = ({ message }) => {
-  const isUser = message.sender === "user";
+  const isUser = message.name === "user";
   return (
     <motion.div
       layout
@@ -29,14 +31,14 @@ const MessageBuble: React.FC<{ message: ChatMessage }> = ({ message }) => {
             : "bg-gray-100 text-gray-800 rounded-tl-sm",
         )}
       >
-        <p className="text-sm wrap-break-word">{message.text}</p>
+        <p className="text-sm wrap-break-word">{message.messages}</p>
         <span
           className={cn(
             "text-[10px] opacity-70 mt-1 block ",
             isUser ? "text-right " : "text-left",
           )}
         >
-          {new Date(message.timeStamp).toLocaleTimeString([], {
+          {new Date(message.name).toLocaleTimeString([], {
             hour: "2-digit",
             minute: "2-digit",
           })}
@@ -46,13 +48,18 @@ const MessageBuble: React.FC<{ message: ChatMessage }> = ({ message }) => {
   );
 };
 
-export async function DispMessage() {
-  const supabase = createClient();
+export function DispMessage() {
+  // const supabase = createClient();
 
-  const { data: messages, error } = await supabase
-    .from("messages")
-    .select("sender_id, content");
-
+  // const { data: messages, error } = await supabase
+  //   .from("messages")
+  //   .select("sender_id, content");
+  const { data, isLoading } = useQuery({
+    queryKey: ['message'],
+    queryFn: FetchContact
+  })
+console.log('payam' , data)
+  const messages = data.map((item) => { return item.messages })
   console.log(messages);
   return messages;
 }

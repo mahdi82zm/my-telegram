@@ -154,7 +154,7 @@ export default function HomeIndex() {
     // if (confirm("are  sure  for submitting? ")) startTransition(() => time());
   };
 
-  const hamdleHover = () => {
+  const hamdleHover = ()  => {
     setIsHover(true);
   };
 
