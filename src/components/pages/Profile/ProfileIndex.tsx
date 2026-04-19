@@ -66,7 +66,7 @@ export default function ProfileIndex() {
         "
         >
           <Image
-            src="/hakhamanesh.png"
+            src="/images/profile_01.png"
             fill
             className="bg-zinc-700 size-40 rounded-2xl"
             alt="user-setting"
