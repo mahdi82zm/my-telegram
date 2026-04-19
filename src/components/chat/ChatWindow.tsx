@@ -10,7 +10,7 @@ import { useQuery } from "@tanstack/react-query";
 import FetchContact from "../contact/fetchContact";
 
 const MessageBuble: React.FC<{ message: ChatMessage }> = ({ message }) => {
-  const isUser = message.name === "user";
+  const isUser = message.sender === "user";
   return (
     <motion.div
       layout
@@ -31,14 +31,14 @@ const MessageBuble: React.FC<{ message: ChatMessage }> = ({ message }) => {
             : "bg-gray-100 text-gray-800 rounded-tl-sm",
         )}
       >
-        <p className="text-sm wrap-break-word">{message.messages}</p>
+        <p className="text-sm wrap-break-word">{message.text}</p>
         <span
           className={cn(
             "text-[10px] opacity-70 mt-1 block ",
             isUser ? "text-right " : "text-left",
           )}
         >
-          {new Date(message.name).toLocaleTimeString([], {
+          {new Date(message.createAt).toLocaleTimeString([], {
             hour: "2-digit",
             minute: "2-digit",
           })}
@@ -48,24 +48,9 @@ const MessageBuble: React.FC<{ message: ChatMessage }> = ({ message }) => {
   );
 };
 
-export function DispMessage() {
-  // const supabase = createClient();
-
-  // const { data: messages, error } = await supabase
-  //   .from("messages")
-  //   .select("sender_id, content");
-  const { data, isLoading } = useQuery({
-    queryKey: ['message'],
-    queryFn: FetchContact
-  })
-console.log('payam' , data)
-  const messages = data.map((item) => { return item.messages })
-  console.log(messages);
-  return messages;
-}
 
 export const ChatWindow: React.FC = () => {
-  const { messages, addMessage } = useChatStore();
+  const { messages } = useChatStore();
 
   return (
     <ScrollArea

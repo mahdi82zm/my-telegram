@@ -1,15 +1,37 @@
 "use client";
 
+import { useEffect } from "react";
 import { ChatWindow } from "@/components/chat/ChatWindow";
-import { Toaster } from "react-hot-toast";
-import { motion } from "framer-motion";
 import InputBar from "@/components/chat/InputBar";
-import { cn } from "@/lib/utils";
+import { useChatStore } from "@/store/chatStore";
+import { getSocket } from "@/lib/socket";
+
+
 import { LayoutPanelLeft } from "lucide-react";
-import Sidebar from "@/components/sidebar/Sidebar";
+import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
+
 import Contact from "../contact/Contact";
 
 export default function ChatIndex() {
+
+  const {addMessage} = useChatStore()
+
+  useEffect(()=>{
+
+    const socket = getSocket()
+
+    socket.on("recieve_message" ,(msg)=>{
+      addMessage(msg.text , msg.sender)
+    })
+
+    return  ()=>{
+      socket.off("receive_message")
+    }
+  })
+
+
+
   return (
     <div className="  w-full h-[calc(100vh-11rem)] grid grid-cols-12 gap-10  justify-between">
       

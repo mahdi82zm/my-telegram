@@ -1,42 +1,51 @@
 "use client";
 
+import { getSocket } from "@/lib/socket";
+
 import { FormEvent, useEffect, useRef, useState } from "react";
-import { Button } from "../ui/button";
-import { Input } from "../ui/input";
-import { cn } from "@/lib/utils";
+
 import { useChatStore } from "@/store/chatStore";
+
+import { Input } from "../ui/input";
+import { Button } from "../ui/button";
+import { LucideLoader2, Send, Upload } from "lucide-react";
+import { cn } from "@/lib/utils";
 import toast from "react-hot-toast";
-import { LucideLoader2, Send, Upload, UploadCloud } from "lucide-react";
-import { supabase } from "@/lib/supabase/client";
+
 
 export default function InputBar() {
   const { addMessage } = useChatStore();
   const [inputText, setInputText] = useState("");
 
   const [loading, setIsLoading] = useState(false);
-  const inputEl = useRef(null);
+  const inputEl = useRef<HTMLInputElement | null>(null);
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!inputText.trim()) return;
 
-   
+    const socket = getSocket()
+
+    socket.emit("send_message",{
+      text : inputText,
+      sender:"user"
+    })
 
     addMessage(inputText, "user");
     setInputText("");
-    setIsLoading(true);
+    // setIsLoading(true);
 
-    await new Promise((resolve) => setTimeout(resolve, 1500));
+    // await new Promise((resolve) => setTimeout(resolve, 1500));
 
-    const responseText = `پاسخ شبیه‌سازی شده برای: "${inputText}" — (اینجا اتصال Socket.io انجام می‌شود)`;
-    addMessage(responseText, "other");
-    setIsLoading(false);
-    toast.success("پیام ارسال شد ", {
-      style: {
-        color: "green",
+    // const responseText = `پاسخ شبیه‌سازی شده برای: "${inputText}" — (اینجا اتصال Socket.io انجام می‌شود)`;
+    // addMessage(responseText, "other");
+    // setIsLoading(false);
+    // toast.success("پیام ارسال شد ", {
+    //   style: {
+    //     color: "green",
 
-        borderLeft: "red 3px",
-      },
-    });
+    //     borderLeft: "red 3px",
+    //   },
+    // });
   };
 
   useEffect(() => {
