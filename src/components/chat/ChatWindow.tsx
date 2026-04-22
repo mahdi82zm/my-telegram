@@ -8,9 +8,16 @@ import { createClient } from "@/lib/supabase/client";
 import toast from "react-hot-toast";
 import { useQuery } from "@tanstack/react-query";
 import FetchContact from "../contact/fetchContact";
+import { useEffect } from "react";
+import { fetchMessages } from "@/services/messageServices";
 
 const MessageBuble: React.FC<{ message: ChatMessage }> = ({ message }) => {
-  const isUser = message.sender === "user";
+  
+  const {currentUserId} = useChatStore()
+ 
+  const isUser = message.senderId === currentUserId
+
+
   return (
     <motion.div
       layout

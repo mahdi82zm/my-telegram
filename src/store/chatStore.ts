@@ -1,34 +1,42 @@
 import { create } from "zustand";
 
-
-
 export interface ChatMessage {
   id: string;
   text: string;
-  sender: "user" | "other" | string;
+  senderId: string;
+  recieverId: string;
   createAt: number;
 }
 
 interface ChatState {
   messages: ChatMessage[];
-  addMessage: (text: string, sender: "user" | "other" | string) => void;
+
+  currentUserId: string | null;
+  selectedContact: string | null;
+
+  setCurrentUserId: (id: string) => void;
+  setSelectedContact: (id: string) => void;
+
+  setMessages: (messages: ChatMessage[]) => void;
+
+  addMessage: (msg: ChatMessage) => void;
+
   clearChat: () => void;
 }
 
 export const useChatStore = create<ChatState>((set, get) => ({
   messages: [],
 
-  addMessage: (text, sender) =>
+  currentUserId: "u1",
+  selectedContact: null,
+
+  setCurrentUserId: (id) => set({ currentUserId: id }),
+  setSelectedContact: (id) => set({ selectedContact: id }),
+  setMessages: (messages) => set({ messages }),
+
+  addMessage: (msg) =>
     set((state) => ({
-      messages: [
-        ...state.messages,
-        {
-          id: Date.now().toString(),
-          text,
-          sender,
-          createAt: Date.now(),
-        },
-      ],
+      messages: [...state.messages, msg],
     })),
 
   clearChat: () => set({ messages: [] }),
