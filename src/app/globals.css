@@ -4,8 +4,6 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-
-
   --breakpoint-tablet: 40rem;
   --breakpoint-laptop: 64rem;
   --breakpoint-desktop: 80rem;
@@ -14,7 +12,7 @@
   --breakpoint-2xl: 100rem;
   --breakpoint-3xl: 120rem;
 
-  --breakpoint-xl : 64rem;
+  --breakpoint-xl: 64rem;
   --color-yellowPrimary: var(--color-yellow-primary);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
@@ -170,3 +168,32 @@
     @apply bg-background text-foreground;
   }
 }
+/* width */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+/* background */
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #4b5563;
+  border-radius: 10px;
+}
+
+
+::-webkit-scrollbar-thumb:hover{
+  background: #1f2937;
+}
+
+
+
+
+/* hide scrollbar everywhere */
+
+
+
+

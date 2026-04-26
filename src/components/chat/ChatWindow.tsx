@@ -4,12 +4,7 @@ import { useChatStore, ChatMessage } from "@/store/chatStore";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { createClient } from "@/lib/supabase/client";
-import toast from "react-hot-toast";
-import { useQuery } from "@tanstack/react-query";
-import FetchContact from "../contact/fetchContact";
-import { useEffect } from "react";
-import { fetchMessages } from "@/services/messageServices";
+
 
 const MessageBuble: React.FC<{ message: ChatMessage }> = ({ message }) => {
   
@@ -45,7 +40,7 @@ const MessageBuble: React.FC<{ message: ChatMessage }> = ({ message }) => {
             isUser ? "text-right " : "text-left",
           )}
         >
-          {new Date(message.createAt).toLocaleTimeString([], {
+          {new Date(message.createdAt).toLocaleTimeString([], {
             hour: "2-digit",
             minute: "2-digit",
           })}

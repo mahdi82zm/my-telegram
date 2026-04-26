@@ -14,7 +14,7 @@ export default function RootLayout({
 }) {
   return (
     <html>
-      <body className={cn(" min-h-screen min-w-screen ")}>
+      <body className={cn(" min-h-screen min-w-screen  costom-scroll")}>
         <div className={cn("felx flex-col px-4 h-full  w-full  ")}>
           <div className="h-20 relative">
             <HeaderSite />

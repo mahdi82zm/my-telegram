@@ -24,6 +24,8 @@ export default function InputBar() {
   const [loading, setIsLoading] = useState(false);
   const inputEl = useRef<HTMLInputElement | null>(null);
 
+  const fileInputRef = useRef<HTMLInputElement>(null)
+
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -37,13 +39,16 @@ export default function InputBar() {
       id: crypto.randomUUID(),
       text: inputText,
       senderId: currentUserId,
-      recieverId: selectedContact,
-      createAt: Date.now()
+      receiverId: selectedContact,
+      createdAt: Date.now()
     }
 
-    socket.emit("send_message", {
+    socket.emit("send_message",
       newMessage
-    })
+    )
+
+    console.log("NEW MESSAGE:", newMessage)
+
 
     addMessage(newMessage);
 
@@ -80,16 +85,15 @@ export default function InputBar() {
           disabled={loading}
           className={cn("flex-1")}
         />
-
-        <Button className={cn("bg-blue-600 p-0 relative")}>
-          <Input type="file" className={cn("size-1 border-none")} />
-          <Upload className="absolute" />
+        <Input type="file" ref={fileInputRef} className={cn("hidden")} />
+        <Button onClick={() => fileInputRef.current?.click()} className={cn("bg-blue-600 hover:bg-blue-900 aspect-square  p-0 relative")}>
+          <Upload className="absolute text-primary " />
         </Button>
 
         <Button type="submit" disabled={loading} className="bg-blue-600 hover:bg-blue-700">
-          {loading ? <LucideLoader2 className="size-5 animate-spin" /> : <Send className="size-5" />}
+          {loading ? <LucideLoader2 className="size-5 animate-spin " /> : <Send className="size-5 text-primary" />}
         </Button>
       </form>
-    </div>  
+    </div>
   );
 }

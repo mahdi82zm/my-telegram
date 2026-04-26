@@ -15,26 +15,26 @@ import Contact from "../contact/Contact";
 
 export default function ChatIndex() {
 
-  const {addMessage} = useChatStore()
+  const { addMessage } = useChatStore()
 
-  useEffect(()=>{
+  useEffect(() => {
 
     const socket = getSocket()
 
-    socket.on("recieve_message" ,(msg)=>{
-      addMessage(msg.text , msg.sender)
+    socket.on("recieve_message", (msg) => {
+      addMessage(msg)
     })
 
-    return  ()=>{
+    return () => {
       socket.off("receive_message")
     }
-  })
+  }, [addMessage])
 
 
 
   return (
     <div className="  w-full h-[calc(100vh-11rem)] grid grid-cols-12 gap-10  justify-between">
-      
+
 
       <motion.div
         initial={{ scale: 0.9, y: 20 }}

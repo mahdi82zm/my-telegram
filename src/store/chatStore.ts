@@ -1,11 +1,12 @@
 import { create } from "zustand";
-
+import { persist } from "zustand/middleware";
 export interface ChatMessage {
   id: string;
   text: string;
   senderId: string;
-  recieverId: string;
-  createAt: number;
+  receiverId: string;
+  createdAt: number;
+  file?: string;
 }
 
 interface ChatState {

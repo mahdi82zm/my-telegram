@@ -1,41 +1,57 @@
 'use client'
 
-import { LucideLoader2 } from "lucide-react";
+import { Circle, LucideContact, LucideLoader2 } from "lucide-react";
 import Image from "next/image";
 import { motion } from 'framer-motion'
 import { useChatStore } from "@/store/chatStore";
 import { useQuery } from "@tanstack/react-query";
 import FetchContact from "./fetchContact";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { fetchContact } from "@/services/contactServices";
+import { cn } from "@/lib/utils";
 
 
+interface ContactType {
+  id: string,
+  name: string,
+  avatar: string,
+  online: boolean
+}
 
 
 
 export default function Contact() {
 
 
-  const { setMessages, setSelectedContact, currentUserId } = useChatStore()
+  const { setMessages, setSelectedContact, currentUserId, selectedContact ,  clearChat} = useChatStore()
 
-  const { data: contacts, isLoading } = useQuery({
+
+  const { data: contacts, isLoading } = useQuery<ContactType[]>({
     queryKey: ['contact'],
     queryFn: fetchContact
   })
 
   console.log(contacts)
 
-  
+
 
   const handleOpen = async (contactId) => {
 
     setSelectedContact(contactId)
+    clearChat()
 
-    const res = await fetch(`http://localhost:4000/messages/${currentUserId}/${contactId}`)
+    try {
+      const res = await fetch(`http://localhost:4000/messages/${currentUserId}/${contactId}`)
+      const msg = await res.json()
+      setMessages(msg)
+      
+    } catch (error) {
+        console.error("Error  in  loading  messafges  !!!" ,  error)
+    }
 
-    const msg = await res.json()
 
-    setMessages(msg)
+
+
   }
 
   return (
@@ -43,10 +59,11 @@ export default function Contact() {
       initial={{ scale: 0.9, y: 20 }}
       animate={{ scale: 1, y: 0 }}
       transition={{ duration: 0.4 }}
-      className="bg-accent shadow-2xl rounded-xl m-4 flex flex-col w-100 h-full overflow-scroll border"
+      className="bg-accent shadow-2xl rounded-xl m-4 flex flex-col w-100 h-full  border"
     >
-      <div className="border-b bg-primary-foreground rounded-xl">
-        <h3 className="text-lg font-semibold text-blue-700 p-4">Contact</h3>
+      <div className="border-b bg-primary-foreground rounded-xl flex  gap-2 px-4 items-center justify-start">
+        <LucideContact />
+        <h3 className="text-lg font-semibold  p-4">Contact</h3>
       </div>
 
       {isLoading && (
@@ -54,16 +71,23 @@ export default function Contact() {
           <LucideLoader2 className="animate-spin" />
         </div>
       )}
+      <div className="overflow-scroll h-150 ">
+        {contacts?.map((item) => (
+          <div
+            key={item.id}
+            onClick={() => handleOpen(item.id)}
+            className={cn('flex items-center px-4 border gap-5 py-5 m-3 border-border hover:bg-primary-foreground cursor-pointer rounded-xl', selectedContact == item.id ? 'bg-border' : '')}
+          >
+            <div className="relative aspect-square size-15 ">
 
-      {contacts?.map((item) => (
-        <div
-          key={item.id}
-          onClick={() => handleOpen(item.id)}
-          className="flex items-center px-4 py-2 gap-5 border m-3 rounded-2xl hover:bg-accent cursor-pointer"
-        >
-          <h3>{item.name}</h3>
-        </div>
-      ))}
+              <Image fill className="absolute rounded-full" src="/avatars/profile_01.png" alt="profile"></Image>
+              <div className={`absolute z-50 translate-12 rounded-full aspect-square size-4 ${item.online ? 'bg-green-300' : 'bg-zinc-500'} `}></div>
+            </div>
+            <h3>{item.name}</h3>
+          </div>
+        ))}
+      </div>
+
     </motion.div>
   );
 }
