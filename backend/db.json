@@ -1,0 +1,164 @@
+{
+  "users": [],
+  "contacts": [
+    {
+      "id": "u1",
+      "name": "علی",
+      "avatar": "/avatars/profile_01.png",
+      "online": true
+    },
+    {
+      "id": "u2",
+      "name": "رضا",
+      "avatar": "/avatars/reza.png",
+      "online": false
+    },
+    {
+      "id": "u3",
+      "name": "مهدی",
+      "avatar": "/avatars/mehdi.png",
+      "online": true
+    },
+    {
+      "id": "u4",
+      "name": "حسین",
+      "avatar": "/avatars/hossein.png",
+      "online": false
+    },
+    {
+      "id": "u5",
+      "name": "محمد",
+      "avatar": "/avatars/mohammad.png",
+      "online": true
+    },
+    {
+      "id": "u6",
+      "name": "امیر",
+      "avatar": "/avatars/amir.png",
+      "online": false
+    },
+    {
+      "id": "u7",
+      "name": "سینا",
+      "avatar": "/avatars/sina.png",
+      "online": true
+    },
+    {
+      "id": "u8",
+      "name": "آرمان",
+      "avatar": "/avatars/arman.png",
+      "online": false
+    },
+    {
+      "id": "u9",
+      "name": "نوید",
+      "avatar": "/avatars/navid.png",
+      "online": true
+    },
+    {
+      "id": "u10",
+      "name": "پارسا",
+      "avatar": "/avatars/parsa.png",
+      "online": false
+    },
+    {
+      "id": "u11",
+      "name": "یوسف",
+      "avatar": "/avatars/yousef.png",
+      "online": true
+    },
+    {
+      "id": "u12",
+      "name": "کامران",
+      "avatar": "/avatars/kamran.png",
+      "online": false
+    },
+    {
+      "id": "u13",
+      "name": "میلاد",
+      "avatar": "/avatars/milad.png",
+      "online": true
+    },
+    {
+      "id": "u14",
+      "name": "سامان",
+      "avatar": "/avatars/saman.png",
+      "online": false
+    },
+    {
+      "id": "u15",
+      "name": "کیان",
+      "avatar": "/avatars/kian.png",
+      "online": true
+    },
+    {
+      "id": "u16",
+      "name": "رامین",
+      "avatar": "/avatars/ramin.png",
+      "online": false
+    },
+    {
+      "id": "u17",
+      "name": "آرش",
+      "avatar": "/avatars/arash.png",
+      "online": true
+    },
+    {
+      "id": "u18",
+      "name": "پیمان",
+      "avatar": "/avatars/peyman.png",
+      "online": false
+    },
+    {
+      "id": "u19",
+      "name": "شایان",
+      "avatar": "/avatars/shayan.png",
+      "online": true
+    },
+    {
+      "id": "u20",
+      "name": "ماهان",
+      "avatar": "/avatars/mahan.png",
+      "online": false
+    }
+  ],
+  "messages": [
+    {
+      "id": "1ugBLx3hGfx88IvaISDt3",
+      "text": "سلامیییی",
+      "senderId": "u1",
+      "receiverId": "u2",
+      "createdAt": 1777197523483
+    },
+    {
+      "id": "f58KdHMPNGteczC45UCqs",
+      "text": "چطوری  رضا جان",
+      "senderId": "u1",
+      "receiverId": "u2",
+      "createdAt": 1777197790735
+    },
+    {
+      "id": "V58f2gbsu-fnA5idJ9dyl",
+      "text": "خیلی دلم  تنگ شده برات رضا ",
+      "senderId": "u1",
+      "receiverId": "u2",
+      "createdAt": 1777197807214
+    },
+    {
+      "id": "V58f2gbsu-fnArdJ9dyl",
+      "text": "منم جیگر ",
+      "senderId": "u2",
+      "receiverId": "u1",
+      "createdAt": 1777197807214
+    },
+    {
+      "id": "luVmc8RX_r_5MN1HKS7R1",
+      "text": "سلام",
+      "senderId": "u1",
+      "receiverId": "u3",
+      "createdAt": 1777203217774
+    }
+  ]
+}
+
+
