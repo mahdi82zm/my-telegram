@@ -26,37 +26,37 @@ import { Button } from "../ui/button";
 const item = [
   {
     id: 1,
-    icon: <User  />,
+    icon: <User />,
     name: "Profile",
     ref: "/profile",
   },
   {
     id: 2,
-    icon: <Settings  />,
+    icon: <Settings />,
     name: "setting",
     ref: "/setting",
   },
   {
     id: 3,
-    icon: <Bookmark  />,
+    icon: <Bookmark />,
     name: "Saved Message",
     ref: "/saved",
   },
   {
     id: 4,
-    icon: <MessageCircle  />,
+    icon: <MessageCircle />,
     name: "Chat",
     ref: "/chat",
   },
   {
     id: 5,
-    icon: <Group  />,
+    icon: <Group />,
     name: "group",
     ref: "/group",
   },
   {
     id: 6,
-    icon: <Megaphone  />,
+    icon: <Megaphone />,
     name: "Channle",
     ref: "/channle",
   },
@@ -64,25 +64,28 @@ const item = [
 
 export default function Sidebar() {
   const [select, setSelect] = useState();
-  
+
   const [isOpen, setIsOpen] = useState(true);
 
   return (
     <div
-      className="relative
+      className="relative h-full
 "
     >
-      <div className="fixed z-100 laptop:absolute  p-4   transition-all transform duration-700    ">
+      <div className="fixed z-100 laptop:absolute  p-4 h-full   transition-all transform duration-700    ">
         <motion.div
           layout
           initial={{ scale: 0.9, y: 20 }}
           animate={{ scale: 1, y: 0 }}
           transition={{ duration: 0.4 }}
           className={cn(
-            " flex-col flex h-[90vh]     gap-4 text-primary font-semibold bg-accent shadow-lg  mb-10 border border-sidebar-ring  rounded-2xl p-4 ",
+            " flex-col flex h-full    gap-4 text-primary font-semibold bg-accent shadow-lg  mb-10 border border-sidebar-ring  rounded-2xl p-4 ",
           )}
         >
-          <Button onClick={() => setIsOpen((prev) => !prev)} className={cn("laptop:hidden" , `laptop:`)}>
+          <Button
+            onClick={() => setIsOpen((prev) => !prev)}
+            className={cn("laptop:hidden", `laptop:`)}
+          >
             {isOpen ? <LucidePanelRightClose /> : <LucidePanelLeftClose />}
           </Button>
           {item.map((item) => (
@@ -95,7 +98,7 @@ export default function Sidebar() {
                 select === item.id ? "bg-chart-5 text-primary  " : "",
               )}
             >
-              <div className={cn("flex items-center  gap-4" , )}>
+              <div className={cn("flex items-center  gap-4")}>
                 <span className="text-2xl"> {item.icon}</span>
 
                 <span

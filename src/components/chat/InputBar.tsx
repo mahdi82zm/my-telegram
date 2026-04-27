@@ -59,6 +59,10 @@ export default function InputBar() {
   };
 
 
+  const handleUpload = (e)=>{
+
+  }
+
 
   useEffect(() => {
     const CallBack = (e: KeyboardEvent) => {
@@ -86,7 +90,7 @@ export default function InputBar() {
           className={cn("flex-1")}
         />
         <Input type="file" ref={fileInputRef} className={cn("hidden")} />
-        <Button onClick={() => fileInputRef.current?.click()} className={cn("bg-blue-600 hover:bg-blue-900 aspect-square  p-0 relative")}>
+        <Button onClick={() => handleUpload} className={cn("bg-blue-600 hover:bg-blue-900 aspect-square  p-0 relative")}>
           <Upload className="absolute text-primary " />
         </Button>
 

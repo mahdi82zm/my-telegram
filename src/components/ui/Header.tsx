@@ -21,7 +21,7 @@ export default function Header() {
     <div className={cn(" mb-20 ")}>
       <div
         className={cn(
-          " fixed flex items-center mr-4 justify-between w-[83%] z-10   bg-primary-foreground border border-sidebar-ring shadow rounded-xl  py-4 px-2",
+          " fixed  flex items-center mr-4 justify-between w-[83%] z-10   bg-primary-foreground border border-sidebar-ring shadow rounded-xl  py-4 px-2",
         )}
       >
         <div className={cn("flex items-center gap-4")}>

@@ -7,15 +7,21 @@ import { useChatStore } from "@/store/chatStore";
 import { getSocket } from "@/lib/socket";
 
 
-import { LayoutPanelLeft } from "lucide-react";
+import { LayoutPanelLeft, LucideArrowLeft } from "lucide-react";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 import Contact from "../contact/Contact";
+import { fetchContact } from "@/services/contactServices";
+import { useQuery } from "@tanstack/react-query";
+import { userInfo } from "@/app/_lib/types/userType";
+import Image from "next/image";
 
 export default function ChatIndex() {
 
-  const { addMessage } = useChatStore()
+  const { addMessage, userInfo } = useChatStore()
+
+
 
   useEffect(() => {
 
@@ -30,10 +36,14 @@ export default function ChatIndex() {
     }
   }, [addMessage])
 
+  const { data: user, isLoading } = useQuery<userInfo>({
+    queryKey: ['userInfo'],
+    queryFn: fetchContact
+  })
 
 
   return (
-    <div className="  w-full h-[calc(100vh-11rem)] grid grid-cols-12 gap-10  justify-between">
+    <div className="  w-full h-full flex  justify-between">
 
 
       <motion.div
@@ -41,13 +51,26 @@ export default function ChatIndex() {
         animate={{ scale: 1, y: 0 }}
         transition={{ duration: 0.4 }}
         className={cn(
-          " col-span-7 flex  flex-col w-full  h-full bg-accent shadow-2xl rounded-xl overflow-hidden border m-4",
+          "  flex  flex-col w-full  h-full bg-accent shadow-2xl rounded-xl overflow-hidden border m-4",
         )}
       >
         {/* Header */}
-        <header className="p-4 border-b flex items-center space-x-2 bg-primary-foreground  text-blue-800  ">
-          <LayoutPanelLeft className="size-6" />
-          <h1 className="text-lg font-semibold">Chat Ui </h1>
+        <header className="p-4 border-b flex items-center space-x-2 bg-primary-foreground  text-accent-800  ">
+          <LucideArrowLeft className="size-6" />
+
+          {userInfo ?
+          <div className={cn('flex items-center gap-4 ')}>
+            <div className={cn('relative aspect-square h-10 ')}>
+            <Image className={cn(' bg-amber-500 object-cover rounded-full')} src={userInfo.avatar} fill  alt={userInfo.name}  />
+            </div>
+            <div>
+            <p>{userInfo.name}</p> 
+            <p className={cn( "text-[12px] font-medium" ,userInfo.online ? 'text-chart-2' : 'text-chart-4')} >{userInfo.online ? "Online" : "Offline"}</p>
+            </div>
+          </div>
+          
+          : "start chat"}
+
         </header>
 
         {/* chat window */}
@@ -56,8 +79,10 @@ export default function ChatIndex() {
       </motion.div>
 
       {/* Contact */}
+      <div>
 
-      <Contact />
+        <Contact />
+      </div>
     </div>
   );
 }

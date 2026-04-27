@@ -1,3 +1,5 @@
+import { userInfo } from "@/app/_lib/types/userType";
+import { userInfo } from "os";
 import { create } from "zustand";
 import { persist } from "zustand/middleware";
 export interface ChatMessage {
@@ -23,11 +25,14 @@ interface ChatState {
   addMessage: (msg: ChatMessage) => void;
 
   clearChat: () => void;
+  userInfo: userInfo | null;
+
+  setUserInfo: (info: userInfo) => void;
 }
 
 export const useChatStore = create<ChatState>((set, get) => ({
   messages: [],
-
+  userInfo: null,
   currentUserId: "u1",
   selectedContact: null,
 
@@ -39,6 +44,8 @@ export const useChatStore = create<ChatState>((set, get) => ({
     set((state) => ({
       messages: [...state.messages, msg],
     })),
+
+  setUserInfo: (info) => set({ userInfo: info }),
 
   clearChat: () => set({ messages: [] }),
 }));

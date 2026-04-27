@@ -23,7 +23,7 @@ interface ContactType {
 export default function Contact() {
 
 
-  const { setMessages, setSelectedContact, currentUserId, selectedContact ,  clearChat} = useChatStore()
+  const { setMessages, setSelectedContact, currentUserId, selectedContact ,  clearChat ,setUserInfo} = useChatStore()
 
 
   const { data: contacts, isLoading } = useQuery<ContactType[]>({
@@ -35,15 +35,17 @@ export default function Contact() {
 
 
 
-  const handleOpen = async (contactId) => {
+  const handleOpen = async (contact) => {
 
-    setSelectedContact(contactId)
+    setSelectedContact(contact.id)
+    setUserInfo(contact)
     clearChat()
 
     try {
-      const res = await fetch(`http://localhost:4000/messages/${currentUserId}/${contactId}`)
+      const res = await fetch(`http://localhost:4000/messages/${currentUserId}/${contact.id}`)
       const msg = await res.json()
       setMessages(msg)
+      console.log("msg  : " , msg)
       
     } catch (error) {
         console.error("Error  in  loading  messafges  !!!" ,  error)
@@ -75,7 +77,7 @@ export default function Contact() {
         {contacts?.map((item) => (
           <div
             key={item.id}
-            onClick={() => handleOpen(item.id)}
+            onClick={() => handleOpen(item)}
             className={cn('flex items-center px-4 border gap-5 py-5 m-3 border-border hover:bg-primary-foreground cursor-pointer rounded-xl', selectedContact == item.id ? 'bg-border' : '')}
           >
             <div className="relative aspect-square size-15 ">

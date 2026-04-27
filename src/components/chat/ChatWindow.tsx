@@ -4,12 +4,19 @@ import { useChatStore, ChatMessage } from "@/store/chatStore";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import { motion } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { useQuery } from "@tanstack/react-query";
+import { fetchContact } from "@/services/contactServices";
+import { userInfo } from "@/app/_lib/types/userType";
+
+
 
 
 const MessageBuble: React.FC<{ message: ChatMessage }> = ({ message }) => {
+
+  const { currentUserId } = useChatStore()
+
   
-  const {currentUserId} = useChatStore()
- 
+
   const isUser = message.senderId === currentUserId
 
 
@@ -56,7 +63,7 @@ export const ChatWindow: React.FC = () => {
 
   return (
     <ScrollArea
-      className={cn("flex-1 p-4 h-[calc(90vh-160px)] border-b bg-accent")}
+      className={cn("flex-1 p-4   border-b bg-accent")}
     >
       {messages.map((msg) => (
         <MessageBuble key={msg.id} message={msg} />

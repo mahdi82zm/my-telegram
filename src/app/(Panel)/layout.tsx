@@ -34,7 +34,7 @@ export default function RootLayout({
                 <Header />
               </div>
 
-              <div className={cn("w-full h-10/12")}>{children}</div>
+              <div className={cn("w-full ")}>{children}</div>
             </div>
             <Modal/>
           </div>
