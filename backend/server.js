@@ -5,9 +5,15 @@ import cors from "cors";
 import { nanoid } from "nanoid";
 import db, { initDB } from "./db.js";
 import { error } from "console";
+import authRoute from "./routes/auth.js";
+import { authMiddleware } from "./middleware/authmiddleware.js";
+import jwt from "jsonwebtoken";
 
 const app = express();
 const server = http.createServer(app);
+
+const JWT_SECRET = "SUPER_SECRET_KEY";
+
 
 const io = new Server(server, {
   cors: {
@@ -50,7 +56,7 @@ app.get("/contacts", async (req, res) => {
   res.json(db.data.contacts);
 });
 
-app.get("/messages/:userId/:contactId", async (req, res) => {
+app.get("/messages/:userId/:contactId", authMiddleware, async (req, res) => {
   const { userId, contactId } = req.params;
   await db.read();
 
@@ -71,44 +77,22 @@ server.listen(4000, () => {
   console.log("server running on port 4000");
 });
 
-app.post("/auth/register", async (req, res) => {
-  const { email, name, password } = req.body;
+app.use("/auth", authRoute);
 
-  if (!email || !name || !password) {
-    return res.status(400).json({ error: "Missing fields" });
+// conect socket to  jwt
+
+io.use((socket, next) => {
+  const token = socket.handshake.auth.token;
+
+  if (!token) {
+    return next(new Error("unauthorized"));
   }
 
-  const exist = await db.data.users.find((u) => u.email === email);
-
-  if (exist) return res.status(409).json({ error: "Email already exist" });
-
-  const passwordHash = await bcrypt.hash(password, 10);
-
-  const user = {
-    id: nanoid(),
-    name,
-    email,
-    passwordHash,
-    avatar: "#",
-    createdAt: Date.now(),
-  };
-
-  db.data.users.push(user);
-
-  await db.write();
-
-  res.json({ seccess: true });
-});
-
-app.post("auth/login", async (req, res) => {
-  const { email, password } = req.body;
-
-  await db.read();
-
-  const user = db.data.users.find(u => u.email === email);
-
-  if(!user) return res.status(404).json({error:"user not  found!"})
-
-  const ok = await bcrypt.compare
-
+  try {
+    const decoded = jwt.verify(token , JWT_SECRET);
+    socket.userid = decoded.id
+    next()
+  } catch {
+    next(new Error("unauthorized"))
+  }
 });
